@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1063665227467",
+    "firebase_url": "https://remote-kyc.firebaseio.com",
+    "project_id": "remote-kyc",
+    "storage_bucket": "remote-kyc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063665227467:android:0c50439eb3cdffaf",
+        "android_client_info": {
+          "package_name": "com.example.liyang.remotekyc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1063665227467-ptfcv4d9j6gt76ba538p9ir6ittli1l2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBD49z3ukdKUTlisbnIzrNEvzhB458RnQU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

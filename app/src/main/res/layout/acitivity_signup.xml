@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Name"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/eddob"
+        android:layout_alignStart="@+id/eddob" />
+
+    <EditText
+        android:id="@+id/edemail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/name"
+        android:layout_alignLeft="@+id/name"
+        android:layout_alignStart="@+id/name" />
+
+    <EditText
+        android:id="@+id/edpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_below="@+id/edemail"
+        android:layout_alignLeft="@+id/edemail"
+        android:layout_alignStart="@+id/edemail"
+        android:layout_marginTop="15dp" />
+
+    <EditText
+        android:id="@+id/eddob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="DD/MM/YYYY"
+        android:layout_alignBaseline="@+id/dob"
+        android:layout_alignBottom="@+id/dob"
+        android:layout_alignLeft="@+id/signup"
+        android:layout_alignStart="@+id/signup" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name:"
+        android:textSize="18sp"
+        android:id="@+id/eddname"
+        android:layout_alignBaseline="@+id/name"
+        android:layout_alignBottom="@+id/name"
+        android:layout_toLeftOf="@+id/edemail"
+        android:layout_toStartOf="@+id/edemail" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email:"
+        android:textSize="18sp"
+        android:id="@+id/email"
+        android:layout_alignBaseline="@+id/edemail"
+        android:layout_alignBottom="@+id/edemail"
+        android:layout_toLeftOf="@+id/edemail"
+        android:layout_toStartOf="@+id/edemail" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password:"
+        android:textSize="18sp"
+        android:id="@+id/password"
+        android:layout_alignBaseline="@+id/edpassword"
+        android:layout_alignBottom="@+id/edpassword"
+        android:layout_toLeftOf="@+id/edpassword"
+        android:layout_toStartOf="@+id/edpassword" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date of Birth"
+        android:textSize="18sp"
+        android:id="@+id/dob"
+        android:layout_below="@+id/edpassword"
+        android:layout_toLeftOf="@+id/eddob"
+        android:layout_toStartOf="@+id/eddob"
+        android:layout_marginTop="19dp" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="signup"
+        android:text="Sign Up"
+        android:id="@+id/signup"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="signup"
+        android:text="Login"
+        android:id="@+id/login"
+        android:layout_below="@+id/signup"
+        android:layout_alignLeft="@+id/signup"
+        android:layout_alignStart="@+id/signup"
+        android:layout_marginTop="13dp" />
+
+</RelativeLayout>
