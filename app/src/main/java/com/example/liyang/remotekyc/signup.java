@@ -16,6 +16,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * Created by Li Yang on 3/2/2018.
@@ -24,8 +29,10 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 public class signup extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button signup;
-    private EditText email,password,name;
+    private EditText email,password,name,nric,eddob;
     private Button login;
+    private FirebaseDatabase mref;
+    private DatabaseReference rootRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,17 +43,27 @@ public class signup extends AppCompatActivity {
         email = (EditText) findViewById(R.id.edemail);
         password = (EditText) findViewById(R.id.edpassword);
         name = (EditText) findViewById(R.id.name);
+        nric = (EditText) findViewById(R.id.nric);
+        eddob = (EditText) findViewById(R.id.eddob);
         login = (Button) findViewById(R.id.login);
         login.setVisibility(View.INVISIBLE);
+        mref = FirebaseDatabase.getInstance();
+        rootRef = mref.getReference();
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String getemail = email.getText().toString().trim();
                 String getpassword = password.getText().toString().trim();
+                String getname = name.getText().toString().trim();
+                String getnric = nric.getText().toString().trim();
+                String getdob = eddob.getText().toString().trim();
                 callsignup(getemail,getpassword);
                 if(login.getVisibility() == View.INVISIBLE){
                     login.setVisibility(View.VISIBLE);
                 }
+                signupinfo signupinfo = new signupinfo(getname,getemail,getpassword,getnric,getdob);
+                rootRef.child("Users").push().setValue(signupinfo);
+                //finish();
             }
         });
         login.setOnClickListener(new View.OnClickListener() {
@@ -56,8 +73,9 @@ public class signup extends AppCompatActivity {
                 startActivity(login);
             }
         });
-
     }
+
+
 
     //Create Account
     public void callsignup(String email,String password){
