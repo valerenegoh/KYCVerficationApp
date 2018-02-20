@@ -80,7 +80,7 @@ public class FingerprintAuth extends AppCompatActivity{
             //if cipher is initialized successfully
             if(initCipher()){
                 cryptoObject = new FingerprintManager.CryptoObject(cipher);
-                FingerprintHelper helper = new FingerprintHelper(this);
+                FingerprintHandler helper = new FingerprintHandler(this);
                 helper.startAuth(fingerprintManager, cryptoObject);
             }
         }
