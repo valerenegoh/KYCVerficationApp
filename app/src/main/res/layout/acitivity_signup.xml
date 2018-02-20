@@ -34,7 +34,6 @@
         android:layout_alignLeft="@+id/nric"
         android:layout_alignStart="@+id/nric" />
 
-
     <EditText
         android:id="@+id/edpassword"
         android:layout_width="wrap_content"
@@ -44,8 +43,7 @@
         android:inputType="textPassword"
         android:layout_below="@+id/edemail"
         android:layout_alignLeft="@+id/edemail"
-        android:layout_alignStart="@+id/edemail"
-        android:layout_marginTop="15dp" />
+        android:layout_alignStart="@+id/edemail" />
 
     <EditText
         android:id="@+id/eddob"
@@ -53,8 +51,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="DD/MM/YYYY"
-        android:layout_alignBaseline="@+id/dob"
-        android:layout_alignBottom="@+id/dob"
+        android:layout_below="@+id/edpassword"
         android:layout_alignLeft="@+id/signup"
         android:layout_alignStart="@+id/signup" />
 
@@ -104,10 +101,10 @@
         android:text="Date of Birth"
         android:textSize="18sp"
         android:id="@+id/dob"
-        android:layout_below="@+id/edpassword"
+        android:layout_alignBaseline="@+id/eddob"
+        android:layout_alignBottom="@+id/eddob"
         android:layout_toLeftOf="@+id/eddob"
-        android:layout_toStartOf="@+id/eddob"
-        android:layout_marginTop="19dp" />
+        android:layout_toStartOf="@+id/eddob" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -120,22 +117,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="signup"
-        android:text="Login"
-        android:id="@+id/login"
-        android:layout_below="@+id/signup"
-        android:layout_alignLeft="@+id/signup"
-        android:layout_alignStart="@+id/signup"
-        android:layout_marginTop="13dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:onClick="fingerprint"
         android:text="fingerprint"
         android:id="@+id/fingerprint"
-        android:layout_below="@+id/login"
-        android:layout_alignLeft="@+id/signup"
-        android:layout_alignStart="@+id/signup"
-        android:layout_marginTop="13dp" />
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/signup"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
