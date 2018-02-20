@@ -1,10 +1,13 @@
 package com.example.liyang.remotekyc;
 
 import android.app.KeyguardManager;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CancellationSignal;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
@@ -42,55 +45,63 @@ public class FingerprintAuth extends AppCompatActivity{
     private KeyguardManager keyguardManager;
 
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registerfingerprint);
+        try {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_registerfingerprint);
 
-        //check if device SDK is sufficient (>= 23)
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
-            fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
+            //check if device SDK is sufficient (>= 23)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
+                fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
 
-            //if device does not have fingerprint sensor
-            assert fingerprintManager != null;      //as it may have null pointer exception
-            if(!fingerprintManager.isHardwareDetected()){
-                Toast.makeText(this, "Device does not support fingerprint authentication", Toast.LENGTH_SHORT).show();
-            }
+                //if device does not have fingerprint sensor
+                assert fingerprintManager != null;      //as it may have null pointer exception
+                if (!fingerprintManager.isHardwareDetected()) {
+                    Toast.makeText(this, "Device does not support fingerprint authentication", Toast.LENGTH_SHORT).show();
+                }
 
-            //if user has not granted fingerprint permission for the app
-            if(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(this, "Please enable fingerprint permissions in your device settings", Toast.LENGTH_SHORT).show();
-            }
+                //if user has not granted fingerprint permission for the app
+                if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "Please enable fingerprint permissions in your device settings", Toast.LENGTH_SHORT).show();
+                }
 
-            //if user has not enrolled any fingerprints in device
-            if(!fingerprintManager.hasEnrolledFingerprints()){
-                Toast.makeText(this, "No fingerprints registered in device. Please register at least one in your device settings", Toast.LENGTH_SHORT).show();
-            }
+                //if user has not enrolled any fingerprints in device
+                if (!fingerprintManager.hasEnrolledFingerprints()) {
+                    Toast.makeText(this, "No fingerprints registered in device. Please register at least one in your device settings", Toast.LENGTH_SHORT).show();
+                }
 
-            //if device lockscreen is not secured
-            if(!keyguardManager.isKeyguardSecure()){
-                Toast.makeText(this, "Please enable lockscreen security in your device settings", Toast.LENGTH_SHORT).show();
-            } else{
-                try {
+                //if device lockscreen is not secured
+                if (!keyguardManager.isKeyguardSecure()) {
+                    Toast.makeText(this, "Please enable lockscreen security in your device settings", Toast.LENGTH_SHORT).show();
+                } else {
                     generateKey();
-                } catch (FingerprintException e) {
-                    e.printStackTrace();
+                    //if cipher is initialized successfully
+                    if (initCipher()) {
+                        cryptoObject = new FingerprintManager.CryptoObject(cipher);
+                        FingerprintHandler helper = new FingerprintHandler(this);
+                        helper.startAuth(fingerprintManager, cryptoObject);
+                    }
                 }
             }
-
-            //if cipher is initialized successfully
-            if(initCipher()){
-                cryptoObject = new FingerprintManager.CryptoObject(cipher);
-                FingerprintHandler helper = new FingerprintHandler(this);
-                helper.startAuth(fingerprintManager, cryptoObject);
-            }
+        } catch (Exception e){
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
     //generate encryption key
-    private void generateKey() throws FingerprintException {
+    private void generateKey(){
         try {
             keystore = KeyStore.getInstance("AndroidKeyStore");
+        } catch(KeyStoreException e) {
+            e.printStackTrace();
+        }
+        try {
             keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
+        } catch (NoSuchAlgorithmException |
+                NoSuchProviderException e) {
+            e.printStackTrace();
+        }
+        try {
             keystore.load(null);
             //user has to confirm identity with fingerprint each time they want to use it
             keyGenerator.init(new KeyGenParameterSpec
@@ -100,14 +111,12 @@ public class FingerprintAuth extends AppCompatActivity{
                     .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_PKCS7)
                     .build());
             keyGenerator.generateKey();
-        } catch (KeyStoreException |
-                NoSuchAlgorithmException |
-                NoSuchProviderException |
-                CertificateException |
+        } catch (CertificateException |
                 IOException |
                 InvalidAlgorithmParameterException e) {
             e.printStackTrace();
-            throw new FingerprintException(e);
+        } catch(Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -124,10 +133,10 @@ public class FingerprintAuth extends AppCompatActivity{
         }
 
         try {
-            //return true if cipher initializes successfully
             keystore.load(null);
             SecretKey key = (SecretKey) keystore.getKey(KEY_NAME, null);
             cipher.init(Cipher.ENCRYPT_MODE, key);
+            //return true if cipher initializes successfully
             return true;
         } catch (KeyPermanentlyInvalidatedException e){
             //return false if cipher initialization fails
@@ -143,9 +152,46 @@ public class FingerprintAuth extends AppCompatActivity{
         }
     }
 
-    private class FingerprintException extends Exception{
-        public FingerprintException(Exception e){
-            super(e);
+    class FingerprintHandler extends FingerprintManager.AuthenticationCallback{
+        private Context context;
+        private CancellationSignal cancellationSignal;
+
+        public FingerprintHandler(Context context) {
+            this.context = context;
+        }
+
+        public void startAuth(FingerprintManager fingerprintManager, FingerprintManager.CryptoObject cryptoObject) {
+            //cancels the app's access to touch sensor & other user input if app is not in use.
+            cancellationSignal = new CancellationSignal();
+            if(ActivityCompat.checkSelfPermission(context, android.Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED){
+                return;
+            }
+            fingerprintManager.authenticate(cryptoObject, cancellationSignal, 0, this, null);
+        }
+
+        //for fatal errors
+        @Override
+        public void onAuthenticationError(int errorCode, CharSequence errString) {
+            Toast.makeText(context, "Authentication error: " + errString, Toast.LENGTH_LONG).show();
+        }
+
+        //for non-fatal errors
+        @Override
+        public void onAuthenticationHelp(int helpCode, CharSequence helpString) {
+            Toast.makeText(context, "Authentication help: " + helpString, Toast.LENGTH_LONG).show();
+        }
+
+        //fingerprint matches one registered on device
+        @Override
+        public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
+            Toast.makeText(context, "Success!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(context, SomeHomePage.class));
+        }
+
+        //fingerprint doesn't match any registered on device
+        @Override
+        public void onAuthenticationFailed() {
+            Toast.makeText(context, "Authentication Failed!", Toast.LENGTH_SHORT).show();
         }
     }
 }

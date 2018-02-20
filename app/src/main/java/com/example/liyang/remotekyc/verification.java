@@ -3,7 +3,6 @@ package com.example.liyang.remotekyc;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,7 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
  */
 
 public class verification extends AppCompatActivity {
-    Button signout;
+    Button signout, fingerprint;
     private FirebaseAuth mAuth;
     TextView name;
 
@@ -27,6 +26,7 @@ public class verification extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         name = (TextView)findViewById(R.id.name);
         signout = (Button)findViewById(R.id.signout);
+        fingerprint = (Button) findViewById(R.id.fingerprint);
         //Get the Name of the Current User
         FirebaseUser user = mAuth.getCurrentUser();
 
@@ -43,5 +43,11 @@ public class verification extends AppCompatActivity {
             }
         });
 
+        fingerprint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), FingerprintAuth.class));
+            }
+        });
     }
 }

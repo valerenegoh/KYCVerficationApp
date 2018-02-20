@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         } catch (Exception e){
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
     }

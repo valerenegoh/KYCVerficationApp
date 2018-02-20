@@ -23,6 +23,7 @@
         <activity android:name=".signup"></activity>
         <activity android:name=".verification"></activity>
         <activity android:name=".FingerprintAuth"></activity>
+        <activity android:name=".SomeHomePage"></activity>
     </application>
 
 </manifest>
