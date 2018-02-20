@@ -4,6 +4,13 @@
     android:layout_height="match_parent"
     android:padding="20dp">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fingerprint_ver_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_centerHorizontal="true"/>
+
     <ImageView
         android:id="@+id/fingerprintimg"
         android:layout_width="100dp"
@@ -15,9 +22,9 @@
         android:layout_below="@id/fingerprintimg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please place your fingertip on the scanner to verify your identity"
+        android:text="@string/fingerprint_instructions"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
-        android:textSize="20dp"/>
+        android:textSize="20sp"/>
 
 </RelativeLayout>

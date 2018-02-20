@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">remotekyc</string>
+    <string name="fingerprint_ver_title">Fingerprint Authentication</string>
+    <string name="fingerprint_instructions">Place your fingertip on the scanner to verify your identity</string>
 </resources>
