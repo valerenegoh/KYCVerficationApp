@@ -1,9 +1,5 @@
 package com.example.liyang.remotekyc;
 
-/**
- * Created by Li Yang on 19/2/2018.
- */
-
 public class signupinfo {
     private String name,nric,dob,email,password;
     public signupinfo(){
