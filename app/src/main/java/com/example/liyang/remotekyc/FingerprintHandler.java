@@ -8,12 +8,7 @@ import android.os.CancellationSignal;
 import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
 
-/**
- * Created by ASUS on 2/20/2018.
- */
-
 //This class processes the various callback events during authentication
-
 public class FingerprintHandler extends FingerprintManager.AuthenticationCallback{
     private  Context context;
     private CancellationSignal cancellationSignal;

@@ -11,10 +11,6 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-/**
- * Created by Li Yang on 3/2/2018.
- */
-
 public class verification extends AppCompatActivity {
     Button signout;
     private FirebaseAuth mAuth;

@@ -26,10 +26,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by Li Yang on 3/2/2018.
- */
-
 public class signup extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button signup;

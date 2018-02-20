@@ -27,10 +27,6 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
-/**
- * Created by ASUS on 2/20/2018.
- */
-
 public class FingerprintAuth extends AppCompatActivity{
 
     private static final String KEY_NAME = "EDMTDev";
