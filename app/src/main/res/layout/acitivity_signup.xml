@@ -14,16 +14,25 @@
         android:layout_alignStart="@+id/eddob" />
 
     <EditText
+        android:id="@+id/nric"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="NRIC"
+        android:layout_below="@+id/name"
+        android:layout_alignLeft="@+id/name"
+        android:layout_alignStart="@+id/name" />
+
+    <EditText
         android:id="@+id/edemail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:layout_marginTop="11dp"
-        android:layout_below="@+id/name"
-        android:layout_alignLeft="@+id/name"
-        android:layout_alignStart="@+id/name" />
+        android:layout_below="@+id/nric"
+        android:layout_alignLeft="@+id/nric"
+        android:layout_alignStart="@+id/nric" />
 
     <EditText
         android:id="@+id/edpassword"
@@ -34,8 +43,7 @@
         android:inputType="textPassword"
         android:layout_below="@+id/edemail"
         android:layout_alignLeft="@+id/edemail"
-        android:layout_alignStart="@+id/edemail"
-        android:layout_marginTop="15dp" />
+        android:layout_alignStart="@+id/edemail" />
 
     <EditText
         android:id="@+id/eddob"
@@ -43,8 +51,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="DD/MM/YYYY"
-        android:layout_alignBaseline="@+id/dob"
-        android:layout_alignBottom="@+id/dob"
+        android:layout_below="@+id/edpassword"
         android:layout_alignLeft="@+id/signup"
         android:layout_alignStart="@+id/signup" />
 
@@ -58,6 +65,16 @@
         android:layout_alignBottom="@+id/name"
         android:layout_toLeftOf="@+id/edemail"
         android:layout_toStartOf="@+id/edemail" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NRIC:"
+        android:textSize="18sp"
+        android:id="@+id/NRIC"
+        android:layout_alignBaseline="@+id/nric"
+        android:layout_alignBottom="@+id/nric"
+        android:layout_toLeftOf="@+id/nric"
+        android:layout_toStartOf="@+id/nric" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -84,18 +101,19 @@
         android:text="Date of Birth"
         android:textSize="18sp"
         android:id="@+id/dob"
-        android:layout_below="@+id/edpassword"
+        android:layout_alignBaseline="@+id/eddob"
+        android:layout_alignBottom="@+id/eddob"
         android:layout_toLeftOf="@+id/eddob"
-        android:layout_toStartOf="@+id/eddob"
-        android:layout_marginTop="19dp" />
+        android:layout_toStartOf="@+id/eddob" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="signup"
         android:text="Sign Up"
         android:id="@+id/signup"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/eddob"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -105,6 +123,6 @@
         android:layout_below="@+id/signup"
         android:layout_alignLeft="@+id/signup"
         android:layout_alignStart="@+id/signup"
-        android:layout_marginTop="13dp" />
+        android:layout_marginTop="18dp" />
 
 </RelativeLayout>
