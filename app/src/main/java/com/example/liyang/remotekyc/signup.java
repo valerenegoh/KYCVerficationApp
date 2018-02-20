@@ -66,7 +66,7 @@ public class signup extends AppCompatActivity {
                     public void run() {
                         // Actions to do after 1 seconds
                         //Toast.makeText(signup.this, "Testing: "+isAvailable, Toast.LENGTH_SHORT).show();
-                        if(isAvailable&&passregex(getpassword)&&dobregex(getdob)){
+                        if(isAvailable&&passregex(getpassword)&&dobregex(getdob)&&nricregex(getnric)){
                             callsignup(getemail, getpassword);
                             signupinfo signupinfo = new signupinfo(getname, getemail, getpassword, getnric, getdob);
                             rootRef.child("Users").push().setValue(signupinfo);
@@ -74,6 +74,7 @@ public class signup extends AppCompatActivity {
                             Handler handler1 = new Handler();
                             handler1.postDelayed(new Runnable() {
                                 public void run() {
+                                    //Go to the main page after the account has been created, after 4 second delay
                                     mAuth.signOut();
                                     Intent login = new Intent(signup.this, com.example.liyang.remotekyc.MainActivity.class);
                                     startActivity(login);
@@ -93,13 +94,26 @@ public class signup extends AppCompatActivity {
                                 Log.d("Tag", "NRIC Exists");
                                 Toast.makeText(signup.this, "NRIC already exists.", Toast.LENGTH_SHORT).show();
                             }
+                            //if NRIC requirement fails as well as password requirement fails
+                            else if (!nricregex(getnric)&&!passregex(getpassword)){
+                                Toast.makeText(signup.this, "Invalid NRIC", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(signup.this, "Password must contains at least a capital letter, special character and digit", Toast.LENGTH_SHORT).show();
+                            }
+                            //if NRIC requirement fails as well as date of birth requirement fails
+                            else if (!nricregex(getnric)&&!dobregex(getdob)){
+                                Toast.makeText(signup.this, "Invalid NRIC", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(signup.this, "Invalid Date of Birth", Toast.LENGTH_SHORT).show();
+                            }
                             //if only password requirement fails
                             if(!passregex(getpassword)){
                                 Toast.makeText(signup.this, "Password must contains at least a capital letter, special character and digit", Toast.LENGTH_SHORT).show();
                             }
-                            //if only date of birth requirement fails
+                            //if only NRIC requirement fails
                             else if(!dobregex(getdob)) {
                                 Toast.makeText(signup.this, "Invalid Date of Birth", Toast.LENGTH_SHORT).show();
+                            }
+                            else if (!nricregex(getnric)){
+                                Toast.makeText(signup.this, "Invalid NRIC", Toast.LENGTH_SHORT).show();
                             }
                             //if nric is found in database
                             else{
@@ -128,6 +142,11 @@ public class signup extends AppCompatActivity {
         Pattern p = Pattern.compile("^(((0[1-9]|[12]\\d|3[01])\\/(0[13578]|1[02])\\/((1[6-9]|[2-9]\\d)\\d{2}))|((0[1-9]|[12]\\d|30)\\/(0[13456789]|1[012])\\/((1[6-9]|[2-9]\\d)\\d{2}))|((0[1-9]|1\\d|2[0-8])\\/02\\/((1[6-9]|[2-9]\\d)\\d{2}))|(29\\/02\\/((1[6-9]|[2-9]\\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$");
         Matcher dobcheck = p.matcher(dob);
         return dobcheck.matches();
+    }
+    private boolean nricregex(String nric){
+        Pattern p = Pattern.compile("(?i)^[STFG]\\d{7}[A-Z]$");
+        Matcher nriccheck = p.matcher(nric);
+        return nriccheck.matches();
     }
 
     //Check if nric already exists in database
