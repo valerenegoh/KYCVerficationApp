@@ -107,4 +107,15 @@
         android:layout_alignStart="@+id/signup"
         android:layout_marginTop="13dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="fingerprint"
+        android:text="fingerprint"
+        android:id="@+id/fingerprint"
+        android:layout_below="@+id/login"
+        android:layout_alignLeft="@+id/signup"
+        android:layout_alignStart="@+id/signup"
+        android:layout_marginTop="13dp" />
+
 </RelativeLayout>

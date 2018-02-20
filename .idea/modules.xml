@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/50.003-remotekyc.iml" filepath="$PROJECT_DIR$/50.003-remotekyc.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/remotekyc.iml" filepath="$PROJECT_DIR$/remotekyc.iml" />
     </modules>
   </component>
 </project>
