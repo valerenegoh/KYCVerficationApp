@@ -2,6 +2,7 @@ package com.example.liyang.remotekyc;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -33,10 +34,9 @@ public class signup extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button signup;
     private EditText email,password,name,nric,eddob;
-    private Button login;
     private FirebaseDatabase mref;
     private DatabaseReference rootRef;
-    private boolean isAvailable = false;
+    private boolean isAvailable;
 
 
     @Override
@@ -50,51 +50,67 @@ public class signup extends AppCompatActivity {
         name = (EditText) findViewById(R.id.name);
         nric = (EditText) findViewById(R.id.nric);
         eddob = (EditText) findViewById(R.id.eddob);
-        login = (Button) findViewById(R.id.login);
-        login.setVisibility(View.INVISIBLE);
         mref = FirebaseDatabase.getInstance();
         rootRef = mref.getReference();
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String getemail = email.getText().toString().trim();
-                String getpassword = password.getText().toString().trim();
-                String getname = name.getText().toString().trim();
-                String getnric = nric.getText().toString().trim();
-                String getdob = eddob.getText().toString().trim();
+                final String getemail = email.getText().toString().trim();
+                final String getpassword = password.getText().toString().trim();
+                final String getname = name.getText().toString().trim();
+                final String getnric = nric.getText().toString().trim();
+                final String getdob = eddob.getText().toString().trim();
                 checkIfdataExists("Users");
-                callsignup(getemail,getpassword);
-                if(login.getVisibility() == View.INVISIBLE){
-                    login.setVisibility(View.VISIBLE);
-                }
-                signupinfo signupinfo = new signupinfo(getname,getemail,getpassword,getnric,getdob);
-                rootRef.child("Users").push().setValue(signupinfo);
-
-                    //finish();
-                    /*
-                    if(passregex(getpassword)||dobregex(getdob)){
-                        callsignup(getemail,getpassword);
-                        if(login.getVisibility() == View.INVISIBLE){
-                            login.setVisibility(View.VISIBLE);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        // Actions to do after 1 seconds
+                        //Toast.makeText(signup.this, "Testing: "+isAvailable, Toast.LENGTH_SHORT).show();
+                        if(isAvailable&&passregex(getpassword)&&dobregex(getdob)){
+                            callsignup(getemail, getpassword);
+                            signupinfo signupinfo = new signupinfo(getname, getemail, getpassword, getnric, getdob);
+                            rootRef.child("Users").push().setValue(signupinfo);
+                            Toast.makeText(signup.this, "Creating Account..", Toast.LENGTH_SHORT).show();
+                            Handler handler1 = new Handler();
+                            handler1.postDelayed(new Runnable() {
+                                public void run() {
+                                    mAuth.signOut();
+                                    Intent login = new Intent(signup.this, com.example.liyang.remotekyc.MainActivity.class);
+                                    startActivity(login);
+                                }
+                            },4000);
                         }
-                        signupinfo signupinfo = new signupinfo(getname,getemail,getpassword,getnric,getdob);
-                        rootRef.child("Users").push().setValue(signupinfo);
-                        //finish();
+                        else{
+                            //if password requirement fails as well as nric is found in database
+                            if(!passregex(getpassword)&&!isAvailable){
+                                Toast.makeText(signup.this, "Password must contains at least a capital letter, special character and digit", Toast.LENGTH_SHORT).show();
+                                Log.d("Tag", "NRIC Exists");
+                                Toast.makeText(signup.this, "NRIC already exists.", Toast.LENGTH_SHORT).show();
+                            }
+                            //if date of birth requirement fails as well as nric is found in database
+                            else if (!dobregex(getdob)&&!isAvailable){
+                                Toast.makeText(signup.this, "Invalid Date of Birth", Toast.LENGTH_SHORT).show();
+                                Log.d("Tag", "NRIC Exists");
+                                Toast.makeText(signup.this, "NRIC already exists.", Toast.LENGTH_SHORT).show();
+                            }
+                            //if only password requirement fails
+                            if(!passregex(getpassword)){
+                                Toast.makeText(signup.this, "Password must contains at least a capital letter, special character and digit", Toast.LENGTH_SHORT).show();
+                            }
+                            //if only date of birth requirement fails
+                            else if(!dobregex(getdob)) {
+                                Toast.makeText(signup.this, "Invalid Date of Birth", Toast.LENGTH_SHORT).show();
+                            }
+                            //if nric is found in database
+                            else{
+                                Log.d("Tag", "NRIC Exists");
+                                Toast.makeText(signup.this, "NRIC already exists.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        checkIfdataExists("Users");
                     }
-                    if(!passregex(getpassword)){
-                        Toast.makeText(signup.this, "Password must contains at least a capital letter, special character and digit", Toast.LENGTH_SHORT).show();
-                    }
-                    if(!dobregex(getdob)){
-                        Toast.makeText(signup.this, "Invalid Date of Birth", Toast.LENGTH_SHORT).show();
-                    }
-                    */
-            }
-        });
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent login = new Intent(signup.this, com.example.liyang.remotekyc.MainActivity.class);
-                startActivity(login);
+                }, 1000);
+
             }
         });
     }
@@ -114,17 +130,21 @@ public class signup extends AppCompatActivity {
         return dobcheck.matches();
     }
 
-    //Check if nric and dob already exists in database
+    //Check if nric already exists in database
     private boolean checkIfdataExists(final String user){
         DatabaseReference ref = rootRef.child(user);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                isAvailable=true;
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
-                    if (data.getValue(signupinfo.class).getNric().equals(nric.getText().toString())) {
-                        isAvailable = true;
+                    String getnric = data.getValue(signupinfo.class).getNric();
+                    if (getnric.equals(nric.getText().toString())) {
+                        isAvailable = false;
                         break;
                     }
+                    //Toast.makeText(signup.this, "New NRIC", Toast.LENGTH_SHORT).show();
+                    isAvailable = true;
                 }
             }
 
@@ -139,28 +159,25 @@ public class signup extends AppCompatActivity {
 
     //Create Account
     public void callsignup(String email,String password){
-            mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            checkIfdataExists("Users");
-                            if(isAvailable) {
-                                Log.d("Testing", "Sign Up Successful:" + task.isSuccessful());
-                                if (!task.isSuccessful()) {
-                                    Toast.makeText(signup.this, "Email Already taken", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    userprofile();
-                                    Toast.makeText(signup.this, "Created Account", Toast.LENGTH_SHORT).show();
-                                    Log.d("Testing", "Created Account");
-                                }
-                            }
-                            else{
-                                Log.d("Tag", "NRIC Exits");
-                                Toast.makeText(signup.this, "NRIC exists.", Toast.LENGTH_SHORT).show();
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        checkIfdataExists("Users");
+                        Log.d("Testing", "Sign Up Successful:" + task.isSuccessful());
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(signup.this, "Failed", Toast.LENGTH_SHORT).show();
+                            if(!isAvailable){
+                                task.isSuccessful();
                             }
                         }
-                    });
-
+                        else {
+                            userprofile();
+                            Toast.makeText(signup.this, "Created Account", Toast.LENGTH_SHORT).show();
+                            Log.d("Testing", "Created Account");
+                        }
+                    }
+                });
     }
 
     public void userprofile(){
