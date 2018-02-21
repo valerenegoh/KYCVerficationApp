@@ -62,7 +62,7 @@ public class signup extends AppCompatActivity {
                     public void run() {
                         // Actions to do after 1 seconds
                         //Toast.makeText(signup.this, "Testing: "+isAvailable, Toast.LENGTH_SHORT).show();
-                        if(isAvailable&&passregex(getpassword)&&dobregex(getdob)&&nricregex(getnric)){
+                        if(isAvailable&&passregex(getpassword)&&dobregex(getdob)&&nricregex(getnric)&&emailregex(getemail)){
                             callsignup(getemail, getpassword);
                             signupinfo signupinfo = new signupinfo(getname, getemail, getpassword, getnric, getdob);
                             rootRef.child("Users").push().setValue(signupinfo);
@@ -78,24 +78,24 @@ public class signup extends AppCompatActivity {
                             },4000);
                         }
                         else{
-                            //if password requirement fails as well as nric is found in database
+                            //if password requirement fails AND NRIC is found in database
                             if(!passregex(getpassword)&&!isAvailable){
                                 Toast.makeText(signup.this, "Password must contains at least a capital letter, special character and digit", Toast.LENGTH_SHORT).show();
                                 Log.d("Tag", "NRIC Exists");
                                 Toast.makeText(signup.this, "NRIC already exists.", Toast.LENGTH_SHORT).show();
                             }
-                            //if date of birth requirement fails as well as nric is found in database
+                            //if date of birth requirement fails AND NRIC is found in database
                             else if (!dobregex(getdob)&&!isAvailable){
                                 Toast.makeText(signup.this, "Invalid Date of Birth", Toast.LENGTH_SHORT).show();
                                 Log.d("Tag", "NRIC Exists");
                                 Toast.makeText(signup.this, "NRIC already exists.", Toast.LENGTH_SHORT).show();
                             }
-                            //if NRIC requirement fails as well as password requirement fails
+                            //if NRIC requirement fails AND password requirement fails
                             else if (!nricregex(getnric)&&!passregex(getpassword)){
                                 Toast.makeText(signup.this, "Invalid NRIC", Toast.LENGTH_SHORT).show();
                                 Toast.makeText(signup.this, "Password must contains at least a capital letter, special character and digit", Toast.LENGTH_SHORT).show();
                             }
-                            //if NRIC requirement fails as well as date of birth requirement fails
+                            //if NRIC requirement fails AND date of birth requirement fails
                             else if (!nricregex(getnric)&&!dobregex(getdob)){
                                 Toast.makeText(signup.this, "Invalid NRIC", Toast.LENGTH_SHORT).show();
                                 Toast.makeText(signup.this, "Invalid Date of Birth", Toast.LENGTH_SHORT).show();
@@ -104,14 +104,19 @@ public class signup extends AppCompatActivity {
                             if(!passregex(getpassword)){
                                 Toast.makeText(signup.this, "Password must contains at least a capital letter, special character and digit", Toast.LENGTH_SHORT).show();
                             }
-                            //if only NRIC requirement fails
+                            //if only email requirement fails
+                            if (!emailregex(getemail)){
+                                Toast.makeText(signup.this, "Invalid Email", Toast.LENGTH_SHORT).show();
+                            }
+                            //if only date of birth requirement fails
                             else if(!dobregex(getdob)) {
                                 Toast.makeText(signup.this, "Invalid Date of Birth", Toast.LENGTH_SHORT).show();
                             }
+                            //if only NRIC requirement fails
                             else if (!nricregex(getnric)){
                                 Toast.makeText(signup.this, "Invalid NRIC", Toast.LENGTH_SHORT).show();
                             }
-                            //if nric is found in database
+                            //if NRIC is found in database
                             else{
                                 Log.d("Tag", "NRIC Exists");
                                 Toast.makeText(signup.this, "NRIC already exists.", Toast.LENGTH_SHORT).show();
@@ -125,8 +130,7 @@ public class signup extends AppCompatActivity {
         });
     }
 
-    //Regex to check for password contains at least
-    // a capital letter, special character and digit
+    //Regex to check for strong password (password should contain at least one capital letter, special character and digit)
     private boolean passregex(String pass){
         Pattern p = Pattern.compile("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}");
         Matcher passcheck = p.matcher(pass);
@@ -139,13 +143,22 @@ public class signup extends AppCompatActivity {
         Matcher dobcheck = p.matcher(dob);
         return dobcheck.matches();
     }
+
+    //Regex to check for correct NRIC format
     private boolean nricregex(String nric){
         Pattern p = Pattern.compile("(?i)^[STFG]\\d{7}[A-Z]$");
         Matcher nriccheck = p.matcher(nric);
         return nriccheck.matches();
     }
 
-    //Check if nric already exists in database
+    //Regex to check for correct email format
+    private boolean emailregex(String email){
+        Pattern p = Pattern.compile("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])");
+        Matcher emailcheck = p.matcher(email);
+        return emailcheck.matches();
+    }
+
+    //Check if NRIC already exists in database
     private boolean checkIfdataExists(final String user){
         DatabaseReference ref = rootRef.child(user);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
