@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     });
-        } catch (IllegalArgumentException e1){
+        } catch (Exception e){
             if (email.isEmpty() && password.isEmpty()) {
                 Toast.makeText(this, "Please enter your email and password.", Toast.LENGTH_LONG).show();
             }
@@ -92,8 +92,10 @@ public class MainActivity extends AppCompatActivity {
             else if (password.isEmpty()) {
                 Toast.makeText(this, "Please enter your password.", Toast.LENGTH_LONG).show();
             }
-        } catch (Exception e2) {
-            Toast.makeText(this, "Invalid email or password.", Toast.LENGTH_LONG).show();
+            else {
+                Toast.makeText(this, "Invalid email or password.", Toast.LENGTH_LONG).show();
+                Log.i("invalid signin", e.getMessage());
+            }
         }
     }
 
