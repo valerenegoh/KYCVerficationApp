@@ -1,5 +1,6 @@
 package com.example.liyang.remotekyc;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -64,8 +65,10 @@ public class MainActivity extends AppCompatActivity {
         try {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+
                             Log.d("Testing", "Sign In Successful:" + task.isSuccessful());
 
                             //If Sign In failed, displays a message to the user
@@ -79,8 +82,18 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     });
-        } catch (Exception e){
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        } catch (IllegalArgumentException e1){
+            if (email.isEmpty() && password.isEmpty()) {
+                Toast.makeText(this, "Please enter your email and password.", Toast.LENGTH_LONG).show();
+            }
+            else if (email.isEmpty()) {
+                Toast.makeText(this, "Please enter your email.", Toast.LENGTH_LONG).show();
+            }
+            else if (password.isEmpty()) {
+                Toast.makeText(this, "Please enter your password.", Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e2) {
+            Toast.makeText(this, "Invalid email or password.", Toast.LENGTH_LONG).show();
         }
     }
 
