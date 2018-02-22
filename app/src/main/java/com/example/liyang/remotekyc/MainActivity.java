@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,17 +67,16 @@ public class MainActivity extends AppCompatActivity {
         try {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-
                             Log.d("Testing", "Sign In Successful:" + task.isSuccessful());
-
                             //If Sign In failed, displays a message to the user
                             if (!task.isSuccessful()) {
                                 Log.v("Testing", "SignInwithEmail:Failed", task.getException());
-                                Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                                Exception exception = task.getException();
+                                Toast.makeText(MainActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
                             } else {
+                                Toast.makeText(MainActivity.this, "Logging in...", Toast.LENGTH_SHORT).show();
                                 Intent verification = new Intent(MainActivity.this, com.example.liyang.remotekyc.verification.class);
                                 finish();
                                 startActivity(verification);
