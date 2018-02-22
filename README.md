@@ -4,3 +4,9 @@ Current Know-your-customer (KYC) processes typically require a Face-to-face
 a person (e.g. passport and NRIC) against their physical identity. The
 goal of this project is to design an application/software that allows a
 company to verify the identification of a person with confidence. 
+
+## Team Members
+- Tan Li Yang		      1002001
+- Tracy Yee Enying	  1002379
+- Valerene Goh Ze Yi	1002457
+- Chua Xiao Wei		    1002484
