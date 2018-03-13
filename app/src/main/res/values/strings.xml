@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">remotekyc</string>
     <string name="fingerprint_instructions">Place your fingertip on the scanner to verify your identity</string>
+    <string name="success_toast">Creating Account..</string>
 </resources>
