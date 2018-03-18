@@ -30,5 +30,6 @@ dependencies {
     compile 'com.google.firebase:firebase-core:11.8.0'
     compile 'com.google.firebase:firebase-messaging:11.8.0'
     testCompile 'junit:junit:4.12'
+    androidTestImplementation 'io.appium:java-client:5.0.4'
 }
 apply plugin: 'com.google.gms.google-services'
