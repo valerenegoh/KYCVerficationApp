@@ -50,6 +50,7 @@
         android:layout_below="@+id/edpassword"
         android:layout_alignStart="@+id/signup" />
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -96,9 +97,9 @@
         android:text="Date of Birth"
         android:textSize="18sp"
         android:id="@+id/dob"
-        android:layout_below="@+id/edpassword"
-        android:layout_toStartOf="@+id/eddob"
-        android:layout_marginTop="19dp" />
+        android:layout_alignBaseline="@+id/eddob"
+        android:layout_alignBottom="@+id/eddob"
+        android:layout_toStartOf="@+id/eddob" />
 
     <Button
         android:layout_width="wrap_content"
@@ -106,8 +107,7 @@
         android:onClick="signup"
         android:text="Sign Up"
         android:id="@+id/signup"
-        android:layout_below="@+id/eddob"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
