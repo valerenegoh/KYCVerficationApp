@@ -16,10 +16,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
+
 
     private FirebaseAuth mAuth;
     private EditText email,password;
@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
         login = (Button) findViewById(R.id.login);
         final TextView registerlink = (TextView) findViewById(R.id.register);
+        final TextView forgetpass = (TextView) findViewById(R.id.forgetpass);
+        //Go to signup activity
         registerlink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,6 +43,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(register);
             }
         });
+
+        //Go to resetpassword activity
+        forgetpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent resetpassword = new Intent(MainActivity.this, com.example.liyang.remotekyc.resetpassword.class);
+                startActivity(resetpassword);
+            }
+        });
+
 
         //Check if the User is logged in
         if(mAuth.getCurrentUser() != null){
@@ -55,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
                     String getemail = email.getText().toString().trim();
                     String getpassword = password.getText().toString().trim();
                     callsignin(getemail, getpassword);
+
+
+
                 }
             });
         } catch (Exception e){
@@ -66,18 +81,19 @@ public class MainActivity extends AppCompatActivity {
     private void callsignin(String email, String password){
         try {
             mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+
                             Log.d("Testing", "Sign In Successful:" + task.isSuccessful());
+
                             //If Sign In failed, displays a message to the user
                             if (!task.isSuccessful()) {
                                 Log.v("Testing", "SignInwithEmail:Failed", task.getException());
-                                Exception exception = task.getException();
-                                Toast.makeText(MainActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(MainActivity.this, "Logging in...", Toast.LENGTH_SHORT).show();
-                                Intent verification = new Intent(MainActivity.this, com.example.liyang.remotekyc.verification.class);
+                                Intent verification = new Intent(MainActivity.this, com.example.liyang.remotekyc.phoneverification.class);
                                 finish();
                                 startActivity(verification);
                             }

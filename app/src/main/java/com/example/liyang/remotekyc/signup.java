@@ -66,7 +66,7 @@ public class signup extends AppCompatActivity {
                             callsignup(getemail, getpassword);
                             signupinfo signupinfo = new signupinfo(getname, getemail, getpassword, getnric, getdob);
                             rootRef.child("Users").push().setValue(signupinfo);
-                            Toast.makeText(signup.this, "Creating Account..", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(signup.this, R.string.success_toast, Toast.LENGTH_SHORT).show();
                             Handler handler1 = new Handler();
                             handler1.postDelayed(new Runnable() {
                                 public void run() {
@@ -91,9 +91,10 @@ public class signup extends AppCompatActivity {
                                 Toast.makeText(signup.this, "NRIC already exists.", Toast.LENGTH_SHORT).show();
                             }
                             //if NRIC requirement fails AND password requirement fails
-                            else if (!nricregex(getnric)&&!passregex(getpassword)){
+                            else if (!nricregex(getnric)&&!passregex(getpassword)&&!dobregex(getdob)){
                                 Toast.makeText(signup.this, "Invalid NRIC", Toast.LENGTH_SHORT).show();
                                 Toast.makeText(signup.this, "Password must contains at least a capital letter, special character and digit", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(signup.this, "Invalid Date of Birth", Toast.LENGTH_SHORT).show();
                             }
                             //if NRIC requirement fails AND date of birth requirement fails
                             else if (!nricregex(getnric)&&!dobregex(getdob)){
@@ -101,11 +102,11 @@ public class signup extends AppCompatActivity {
                                 Toast.makeText(signup.this, "Invalid Date of Birth", Toast.LENGTH_SHORT).show();
                             }
                             //if only password requirement fails
-                            if(!passregex(getpassword)){
+                            else if(!passregex(getpassword)){
                                 Toast.makeText(signup.this, "Password must contains at least a capital letter, special character and digit", Toast.LENGTH_SHORT).show();
                             }
                             //if only email requirement fails
-                            if (!emailregex(getemail)){
+                            else if (!emailregex(getemail)){
                                 Toast.makeText(signup.this, "Invalid Email", Toast.LENGTH_SHORT).show();
                             }
                             //if only date of birth requirement fails
@@ -153,7 +154,7 @@ public class signup extends AppCompatActivity {
 
     //Regex to check for correct email format
     private boolean emailregex(String email){
-        Pattern p = Pattern.compile("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])");
+        Pattern p = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
         Matcher emailcheck = p.matcher(email);
         return emailcheck.matches();
     }
@@ -188,7 +189,7 @@ public class signup extends AppCompatActivity {
     //Create Account
     public void callsignup(String email,String password){
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         checkIfdataExists("Users");
@@ -200,12 +201,31 @@ public class signup extends AppCompatActivity {
                             }
                         }
                         else {
+                            sendEmailVerification();
                             userprofile();
                             Toast.makeText(signup.this, "Created Account", Toast.LENGTH_SHORT).show();
                             Log.d("Testing", "Created Account");
                         }
                     }
                 });
+    }
+
+    //Send an email for verification
+    private void sendEmailVerification() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user!=null){
+            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        Toast.makeText(signup.this,"Check your email for verification",Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(signup.this,"Error: Cannot send email",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 
     public void userprofile(){
