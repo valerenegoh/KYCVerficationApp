@@ -24,6 +24,8 @@
         <activity android:name=".verification"></activity>
         <activity android:name=".FingerprintAuth"></activity>
         <activity android:name=".SomeHomePage"></activity>
+        <activity android:name=".resetpassword"></activity>
+        <activity android:name=".phoneverification"></activity>
     </application>
 
 </manifest>
