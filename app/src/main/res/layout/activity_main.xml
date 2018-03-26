@@ -26,6 +26,16 @@
         android:layout_below="@+id/password"
         android:layout_centerHorizontal="true"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="forgetpass"
+        android:text="Forget Your Password?"
+        android:id="@+id/forgetpass"
+        android:layout_below="@+id/register"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"/>
+
     <EditText
         android:id="@+id/password"
         android:layout_width="wrap_content"
