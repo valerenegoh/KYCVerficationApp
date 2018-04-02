@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                             //If Sign In failed, displays a message to the user
                             if (!task.isSuccessful()) {
                                 Log.v("Testing", "SignInwithEmail:Failed", task.getException());
-                                Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, R.string.login_invalid, Toast.LENGTH_SHORT).show();
                             } else {
                                 Intent verification = new Intent(MainActivity.this, com.example.liyang.remotekyc.phoneverification.class);
                                 finish();
@@ -101,16 +101,16 @@ public class MainActivity extends AppCompatActivity {
                     });
         } catch (Exception e){
             if (email.isEmpty() && password.isEmpty()) {
-                Toast.makeText(this, "Please enter your email and password.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this,R.string.login_empty, Toast.LENGTH_LONG).show();
             }
             else if (email.isEmpty()) {
-                Toast.makeText(this, "Please enter your email.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.login_emptyemail, Toast.LENGTH_LONG).show();
             }
             else if (password.isEmpty()) {
-                Toast.makeText(this, "Please enter your password.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.login_emptypass, Toast.LENGTH_LONG).show();
             }
             else {
-                Toast.makeText(this, "Invalid email or password.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this,R.string.login_invalid, Toast.LENGTH_LONG).show();
                 Log.i("invalid signin", e.getMessage());
             }
         }

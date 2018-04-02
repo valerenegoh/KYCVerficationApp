@@ -53,16 +53,16 @@ public class phoneverification extends AppCompatActivity {
             public void onVerificationCompleted(PhoneAuthCredential credential) {
                 // Log.d(TAG, "onVerificationCompleted:" + credential);
                 mVerificationInProgress = false;
-                Toast.makeText(phoneverification.this,"Verification Complete",Toast.LENGTH_SHORT).show();
+                Toast.makeText(phoneverification.this,R.string.phone_success,Toast.LENGTH_SHORT).show();
                 signInWithPhoneAuthCredential(credential);
             }
 
             @Override
             public void onVerificationFailed(FirebaseException e) {
-                Toast.makeText(phoneverification.this,"Verification Failed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(phoneverification.this,R.string.phone_fail,Toast.LENGTH_SHORT).show();
                 if (e instanceof FirebaseAuthInvalidCredentialsException) {
                     // Invalid request
-                    Toast.makeText(phoneverification.this,"InValid Phone Number",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(phoneverification.this,R.string.phone_invalid,Toast.LENGTH_SHORT).show();
                 } else if (e instanceof FirebaseTooManyRequestsException) {
                 }
 
