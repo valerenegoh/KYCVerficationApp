@@ -16,7 +16,7 @@ company to verify the identification of a person with confidence.
 - Login Page
 - Password Reset
 - Email Verification
-- SMS Verification
+- OTP Verification
 - Fingerprint Verification
 
 ## Features To Be Implemented
