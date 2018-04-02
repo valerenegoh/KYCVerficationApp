@@ -34,7 +34,7 @@ public class LoginTest {
     Failure Case => Pass
     Success Case => Failed
     Note: Test_emptyPass test separately, as Test_success will move on to next activity and without a back button
-    to continue the last test 
+    to continue the last test
      */
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
