@@ -2,4 +2,11 @@
     <string name="app_name">remotekyc</string>
     <string name="fingerprint_instructions">Place your fingertip on the scanner to verify your identity</string>
     <string name="success_toast">Creating Account..</string>
+    <string name="phone_success">Verification Complete</string>
+    <string name="phone_fail">Verification Failed</string>
+    <string name="phone_invalid">Invalid Phone Number</string>
+    <string name="login_empty">Please enter your email and password.</string>
+    <string name="login_emptyemail">Please enter your email.</string>
+    <string name="login_emptypass">Please enter your password.</string>
+    <string name="login_invalid">Invalid email or password.</string>
 </resources>
