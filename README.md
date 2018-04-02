@@ -10,3 +10,14 @@ company to verify the identification of a person with confidence.
 - Tracy Yee Enying	  1002379
 - Valerene Goh Ze Yi	1002457
 - Chua Xiao Wei		    1002484
+
+## Features Implemented
+- Signup Page (with Firebase Database)
+- Login Page
+- Password Reset
+- Email Verification
+- SMS Verification
+- Fingerprint Verification
+
+## Features To Be Implemented
+- NRIC/QR Code Verification
