@@ -18,6 +18,4 @@ company to verify the identification of a person with confidence.
 - Email Verification
 - OTP Verification
 - Fingerprint Verification
-
-## Features To Be Implemented
 - NRIC/QR Code Verification
