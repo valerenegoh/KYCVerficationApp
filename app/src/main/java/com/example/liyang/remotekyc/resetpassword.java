@@ -37,7 +37,10 @@ public class resetpassword extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(resetpassword.this,"An email has been sent to reset your password",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(resetpassword.this,R.string.reset_success,Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    Toast.makeText(resetpassword.this,R.string.reset_invalid,Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
