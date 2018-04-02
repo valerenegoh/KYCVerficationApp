@@ -22,18 +22,17 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
-/* Unit testing of App Functionality using JUnit
- * current tests include testing for successful account creation and handling invalid inputs
- * future tests can included testing for successful login and verification
- */
 
+/**
+ * Created by Li Yang on 13/3/2018.
+ */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class signupTest {
     @Rule
     public ActivityTestRule<signup> mActivityTestRule = new ActivityTestRule<>(signup.class);
 
-    @Test //Success Case: valid credentials entered (account successfully created)
+    @Test //Success Case
     public void Test_success(){
         String name = "Jerry";
         String nric = "S8320356F";
@@ -140,40 +139,6 @@ public class signupTest {
     public void Test_dobcheck(){
         String name = "Sammy";
         String nric = "S8510244F";
-        String email = "sammy4@gmail.com";
-        String password = "Sutd@1234";
-        String dob = "23/04/199";
-
-        onView(withId(R.id.name)).perform(typeText(name), closeSoftKeyboard());
-
-        //find the nric edit text and type in nric
-        onView(withId(R.id.nric)).perform(typeText(nric), closeSoftKeyboard());
-
-        //find the email address edit text and type in the email address
-        onView(withId(R.id.edemail)).perform(typeText(email), closeSoftKeyboard());
-
-        //find the password edit text and type in the password
-        onView(withId(R.id.edpassword)).perform(typeText(password), closeSoftKeyboard());
-
-        //find the date of birth edit text and type in the date of birth
-        onView(withId(R.id.eddob)).perform(typeText(dob), closeSoftKeyboard());
-
-        //click the signup button
-        onView(withId(R.id.signup)).perform(click());
-
-        //Wait for 2s for the toast message to appear
-        SystemClock.sleep(2000);
-        //Check whether there the "Creating Acccount.." message appears, if not the test is a fail
-        signup activity = mActivityTestRule.getActivity();
-        onView(withText(R.string.success_toast)).
-                inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
-                check(matches(isDisplayed()));
-    }
-
-    @Test //Failure Case: Wrong NRIC Format
-    public void Test_nriccheck(){
-        String name = "Sammy";
-        String nric = "hi";
         String email = "sammy4@gmail.com";
         String password = "Sutd@1234";
         String dob = "23/04/199";
