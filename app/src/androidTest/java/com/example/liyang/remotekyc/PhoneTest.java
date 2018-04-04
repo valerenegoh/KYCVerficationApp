@@ -33,7 +33,7 @@ public class PhoneTest {
     Success Case => Failed
  */
     @Rule
-    public ActivityTestRule<phoneverification> mActivityTestRule = new ActivityTestRule<>(phoneverification.class);
+    public ActivityTestRule<SmsOtpVerfication> mActivityTestRule = new ActivityTestRule<>(SmsOtpVerfication.class);
 
     @Test //Success Case
     public void Test_success() {
@@ -43,7 +43,7 @@ public class PhoneTest {
         onView(withId(R.id.sendotp)).perform(click());
         //Wait for 2s for the toast message to appear
         SystemClock.sleep(2000);
-        phoneverification activity = mActivityTestRule.getActivity();
+        SmsOtpVerfication activity = mActivityTestRule.getActivity();
         onView(withText(R.string.phone_fail)).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
                 check(matches(isDisplayed()));
@@ -63,7 +63,7 @@ public class PhoneTest {
         onView(withId(R.id.sendotp)).perform(click());
         //Wait for 2s for the toast message to appear
         SystemClock.sleep(2000);
-        phoneverification activity = mActivityTestRule.getActivity();
+        SmsOtpVerfication activity = mActivityTestRule.getActivity();
         onView(withText(R.string.phone_fail)).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
                 check(matches(isDisplayed()));
@@ -83,7 +83,7 @@ public class PhoneTest {
         onView(withId(R.id.sendotp)).perform(click());
         //Wait for 2s for the toast message to appear
         SystemClock.sleep(2000);
-        phoneverification activity = mActivityTestRule.getActivity();
+        SmsOtpVerfication activity = mActivityTestRule.getActivity();
         onView(withText(R.string.phone_fail)).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
                 check(matches(isDisplayed()));
@@ -103,7 +103,7 @@ public class PhoneTest {
         onView(withId(R.id.sendotp)).perform(click());
         //Wait for 2s for the toast message to appear
         SystemClock.sleep(2000);
-        phoneverification activity = mActivityTestRule.getActivity();
+        SmsOtpVerfication activity = mActivityTestRule.getActivity();
         onView(withText(R.string.phone_fail)).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
                 check(matches(isDisplayed()));

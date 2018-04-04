@@ -1,16 +1,18 @@
 package com.example.liyang.remotekyc;
 
 public class signupinfo {
-    private String name,nric,dob,email,password;
-    public signupinfo(){
+    private String name,nric,dob,email,password, phone;
 
+    public signupinfo(){
     }
-    public signupinfo(String name,String email,String password,String nric,String dob){
+
+    public signupinfo(String name, String email, String password, String nric, String dob, String phone){
         this.name = name;
         this.email = email;
         this.password = password;
         this.nric = nric;
         this.dob = dob;
+        this.phone = phone;
     }
 
     public void setName(String name){
@@ -28,13 +30,16 @@ public class signupinfo {
     public void setDob(String dob){
         this.dob = dob;
     }
+    public void setPhone(String phone){
+        this.phone = phone;
+    }
+
     public String getName(){
         return name;
     }
     public String getEmail(){
         return email;
     }
-
     public String getPassword(){
         return password;
     }
@@ -43,5 +48,8 @@ public class signupinfo {
     }
     public String getDob(){
         return dob;
+    }
+    public String getPhone() {
+        return phone;
     }
 }

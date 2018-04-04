@@ -15,6 +15,30 @@
       },
       "oauth_client": [
         {
+          "client_id": "1063665227467-ks9434cbn4mlf8qpg0grptrrn4j9jhc7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.liyang.remotekyc",
+            "certificate_hash": "164637db9ec54ca91cb60a4eabc205c41d3bb057"
+          }
+        },
+        {
+          "client_id": "1063665227467-pkhuqpguis08t5ku5rushmkltbasvd6b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.liyang.remotekyc",
+            "certificate_hash": "f5d6e5a815698d7f174fc080d9ef3722e68f2ae8"
+          }
+        },
+        {
+          "client_id": "1063665227467-u70sf430khqvf1ogoba2it4b6ke7u0sc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.liyang.remotekyc",
+            "certificate_hash": "3ff13460ec24d14b9031b3b6320dab2436ece376"
+          }
+        },
+        {
           "client_id": "1063665227467-ptfcv4d9j6gt76ba538p9ir6ittli1l2.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +53,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1063665227467-ptfcv4d9j6gt76ba538p9ir6ittli1l2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

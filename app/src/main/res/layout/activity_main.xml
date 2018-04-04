@@ -1,62 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.liyang.remotekyc.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/applogo"
+        android:src="@drawable/blockchain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/google_signin"
+        android:layout_below="@id/applogo"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="login"
-        android:text="Login"
-        android:id="@+id/login"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/register"
-        android:layout_alignStart="@+id/register"
-        android:layout_marginBottom="218dp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="register"
-        android:text="Register Here"
-        android:id="@+id/register"
-        android:layout_marginTop="51dp"
-        android:layout_below="@+id/password"
-        android:layout_centerHorizontal="true"/>
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Sign in with Google"
+        android:background="#db3236"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/facebook_signin"
+        android:layout_below="@id/google_signin"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="forgetpass"
-        android:text="Forget Your Password?"
-        android:id="@+id/forgetpass"
-        android:layout_below="@+id/register"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"/>
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Sign in with Facebook"
+        android:background="#3b5998"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/kyc_signin"
+        android:layout_below="@id/facebook_signin"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/login"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="11dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword" />
-
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/login"
-        android:layout_alignLeft="@+id/password"
-        android:layout_alignStart="@+id/password"
-        android:layout_marginBottom="81dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Sign in with KYC"
+        android:background="@color/yellow"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
 
 </RelativeLayout>

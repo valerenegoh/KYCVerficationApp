@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name:"
+        android:textSize="18sp"
+        android:id="@+id/eddname"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:ems="10"
+        android:hint="Name"
+        android:layout_toRightOf="@id/eddname"/>
+    <!---->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NRIC:"
+        android:textSize="18sp"
+        android:id="@+id/NRIC"
+        android:layout_below="@id/eddname"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:id="@+id/nric"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:ems="10"
+        android:hint="NRIC"
+        android:layout_below="@id/name"
+        android:layout_toRightOf="@id/eddname"/>
+    <!---->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email:"
+        android:textSize="18sp"
+        android:id="@+id/email"
+        android:layout_below="@id/NRIC"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:id="@+id/edemail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:hint="Email"
+        android:layout_below="@id/nric"
+        android:layout_toRightOf="@id/eddname"/>
+    <!---->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password:"
+        android:textSize="18sp"
+        android:id="@+id/password"
+        android:layout_below="@id/email"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:id="@+id/edpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="60dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_below="@id/edemail"
+        android:layout_toRightOf="@id/eddname"/>
+    <!---->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date of Birth:"
+        android:textSize="18sp"
+        android:id="@+id/dob"
+        android:layout_below="@id/password"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:id="@+id/eddob"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="60dp"
+        android:ems="10"
+        android:hint="DD/MM/YYYY"
+        android:inputType="textPassword"
+        android:layout_below="@id/edpassword"
+        android:layout_toRightOf="@id/eddname"/>
+    <!---->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone No.:"
+        android:textSize="18sp"
+        android:id="@+id/phone_no"
+        android:layout_below="@id/dob"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="60dp"
+        android:ems="10"
+        android:hint="+65XXXXXXXX"
+        android:inputType="number"
+        android:layout_below="@id/eddob"
+        android:layout_toRightOf="@id/eddname"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="signup"
+        android:text="Sign Up"
+        android:id="@+id/signup"
+        android:background="@color/yellow"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/phone"/>
+
+</RelativeLayout>

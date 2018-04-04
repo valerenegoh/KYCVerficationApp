@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/dipInKYC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/dipinkyc" />
+
+    <RelativeLayout
+        android:id="@+id/duckies"
+        android:layout_below="@id/dipInKYC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/ducky1"
+            android:maxHeight="100dp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/logo"/>
+        <ImageView
+            android:id="@+id/ducky2"
+            android:layout_toRightOf="@id/ducky1"
+            android:maxHeight="100dp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ducky1"/>
+        <ImageView
+            android:id="@+id/ducky3"
+            android:layout_toRightOf="@id/ducky2"
+            android:maxHeight="100dp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ducky2"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/first_verification"
+        android:layout_below="@id/duckies"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SECOND STEP VERFICATION:"
+        android:textAlignment="center"
+        android:layout_margin="30dp"
+        android:textSize="20dp"/>
+
+    <Button
+        android:id="@+id/fingerprint"
+        android:layout_below="@id/first_verification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="complete with fingerprint"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@color/yellow"/>
+
+    <Button
+        android:id="@+id/sms"
+        android:layout_below="@id/fingerprint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="complete with sms otp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@color/yellow"/>
+
+    <TextView
+        android:id="@+id/register"
+        android:layout_below="@+id/sms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="Almost there... Just one more step!"/>
+</RelativeLayout>

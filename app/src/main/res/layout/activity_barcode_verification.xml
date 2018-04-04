@@ -1,40 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.liyang.remotekyc.BarcodeVerification">
+    tools:context="com.example.liyang.remotekyc.BarcodeVerification"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NRIC Barcode Authentication"
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"/>
 
     <Button
         android:id="@+id/butQR"
-        android:layout_width="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="QR CODE"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="HandleClick" />
-
-    <Button
-        android:id="@+id/butBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="BARCODE"
-        android:layout_alignBottom="@+id/butQR"
-        android:layout_toRightOf="@+id/butQR"
-        android:layout_toEndOf="@+id/butQR"
-        android:onClick="HandleClick" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:text="QR code"
+        android:background="#db3236"
+        android:textColor="@color/white"
+        android:onClick="HandleClick"
+        android:textStyle="bold"/>
 
     <Button
         android:id="@+id/butOther"
-        android:layout_width="wrap_content"
+        android:layout_below="@id/butQR"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="OTHER"
-        android:layout_alignBottom="@+id/butBar"
-        android:layout_toRightOf="@+id/butBar"
-        android:layout_toEndOf="@+id/butBar"
-        android:onClick="HandleClick" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Barcode"
+        android:background="@color/yellow"
+        android:textColor="@color/white"
+        android:onClick="HandleClick"
+        android:textStyle="bold"
+        android:layout_marginBottom="50dp"/>
 
     <TextView
         android:id="@+id/tvStatus"
@@ -44,7 +52,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="FORMAT"
         android:textColor="@android:color/white"
-        android:layout_below="@+id/butQR"
+        android:layout_below="@+id/butOther"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -52,10 +60,10 @@
         android:id="@+id/tvResult"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="READY"
         android:layout_below="@+id/tvStatus"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
 </RelativeLayout>

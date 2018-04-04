@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class BarcodeVerification extends AppCompatActivity {
     //can only be run on actual phone and not emulator
@@ -34,9 +35,9 @@ public class BarcodeVerification extends AppCompatActivity {
             case R.id.butQR: //scanning QR code
                 intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
                 break;
-            case R.id.butBar: //scanning NRIC barcode
-                intent.putExtra("SCAN_MODE", "PRODUCT_MODE");
-                break;
+//            case R.id.butBar: //scanning NRIC barcode
+//                intent.putExtra("SCAN_MODE", "PRODUCT_MODE");
+//                break;
             case R.id.butOther: //other barcode scan_formats (just in case)
                 intent.putExtra("SCAN_FORMATS", "CODE_39,CODE_93,CODE_128,DATA_MATRIX,ITF,CODABAR");
                 break;
@@ -46,15 +47,23 @@ public class BarcodeVerification extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == 0) {
-            TextView tvStatus=(TextView)findViewById(R.id.tvStatus); //scan_format used to scan barcode
-            TextView tvResult=(TextView)findViewById(R.id.tvResult); //generated string from barcode --> NRIC
-            if (resultCode == RESULT_OK) {
-                tvStatus.setText(intent.getStringExtra("SCAN_RESULT_FORMAT"));
-                tvResult.setText(intent.getStringExtra("SCAN_RESULT"));
-                this.nricBarcode = intent.getStringExtra("SCAN_RESULT");
-            } else if (resultCode == RESULT_CANCELED) {
-                tvStatus.setText("Press a button to start a scan.");
-                tvResult.setText("Scan cancelled.");
+            TextView tvStatus = (TextView)findViewById(R.id.tvStatus); //scan_format used to scan barcode
+            TextView tvResult = (TextView)findViewById(R.id.tvResult); //generated string from barcode --> NRIC
+            try {
+                if (resultCode == RESULT_OK) {
+                    this.nricBarcode = intent.getStringExtra("SCAN_RESULT");
+                    tvStatus.setText(intent.getStringExtra("SCAN_RESULT_FORMAT"));
+                    tvResult.setText(nricBarcode);
+
+                    Intent i = new Intent(BarcodeVerification.this, KYCSecondStep.class);
+                    i.putExtra("nric", nricBarcode);
+                    startActivity(i);
+                } else if (resultCode == RESULT_CANCELED) {
+                    tvStatus.setText("Press a button to start a scan.");
+                    tvResult.setText("Scan cancelled.");
+                }
+            }catch (Exception e){
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
     }

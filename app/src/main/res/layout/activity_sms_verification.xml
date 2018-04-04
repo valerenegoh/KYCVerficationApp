@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SMS OTP Authentication"
+        android:textSize="25dp"
+        android:layout_marginBottom="100dp"
+        android:layout_centerHorizontal="true"/>
+
+    <!---->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please enter your phone number with country code"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:id="@+id/number"
+        android:layout_below="@id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please enter OTP to Verify"
+        android:textSize="18sp"
+        android:id="@+id/verify"
+        android:visibility="gone"
+        android:layout_below="@id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"/>
+    <!---->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone Number:"
+        android:layout_margin="10dp"
+        android:textSize="18sp"
+        android:id="@+id/phone"
+        android:layout_below="@id/number"/>
+
+    <EditText
+        android:id="@+id/phoneverify"
+        android:layout_below="@id/number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:ems="10"
+        android:hint="+65XXXXXXXX"
+        android:layout_toRightOf="@id/phone" />
+    <!---->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OTP:"
+        android:visibility="gone"
+        android:layout_margin="10dp"
+        android:textSize="18sp"
+        android:id="@+id/otp"
+        android:layout_below="@id/verify"/>
+
+    <EditText
+        android:id="@+id/otpverify"
+        android:layout_below="@id/verify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:visibility="gone"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="Enter OTP"
+        android:layout_toRightOf="@id/otp" />
+    <!---->
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="sendotp"
+        android:text="Send OTP"
+        android:id="@+id/sendotp"
+        android:background="@color/yellow"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/phone"
+        android:layout_marginTop="30dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="enterotp"
+        android:text="Verify"
+        android:visibility="gone"
+        android:id="@+id/enterotp"
+        android:background="@color/yellow"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/otp"
+        android:layout_marginTop="30dp"/>
+
+</RelativeLayout>

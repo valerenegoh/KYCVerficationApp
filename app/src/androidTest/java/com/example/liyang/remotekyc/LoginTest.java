@@ -12,12 +12,10 @@ import org.junit.runner.RunWith;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.pressBack;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.Is.is;
@@ -37,7 +35,7 @@ public class LoginTest {
     to continue the last test
      */
     @Rule
-    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<EmailPasswordVerification> mActivityTestRule = new ActivityTestRule<>(EmailPasswordVerification.class);
 
     @Test //Success Case
     public void Test_success(){
@@ -56,7 +54,7 @@ public class LoginTest {
         //Wait for 2s for the toast message to appear
         SystemClock.sleep(2000);
         //Check whether there the "Invalid email or password." message appears, if not the test is a fail
-        MainActivity activity = mActivityTestRule.getActivity();
+        EmailPasswordVerification activity = mActivityTestRule.getActivity();
         onView(withText(R.string.login_invalid)).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
                 check(matches(isDisplayed()));
@@ -76,7 +74,7 @@ public class LoginTest {
         //Wait for 2s for the toast message to appear
         SystemClock.sleep(2000);
         //Check whether there the "Please enter your email." message appears, if not the test is a success
-        MainActivity activity = mActivityTestRule.getActivity();
+        EmailPasswordVerification activity = mActivityTestRule.getActivity();
         onView(withText(R.string.login_emptyemail)).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
                 check(matches(isDisplayed()));
@@ -96,7 +94,7 @@ public class LoginTest {
         //Wait for 2s for the toast message to appear
         SystemClock.sleep(2000);
         //Check whether there the "Please enter your password." message appears, if not the test is a success
-        MainActivity activity = mActivityTestRule.getActivity();
+        EmailPasswordVerification activity = mActivityTestRule.getActivity();
         onView(withText(R.string.login_emptypass)).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
                 check(matches(isDisplayed()));
@@ -120,7 +118,7 @@ public class LoginTest {
         //Wait for 2s for the toast message to appear
         SystemClock.sleep(2000);
         //Check whether there the "Invalid email or password." message appears, if not the test is a success
-        MainActivity activity = mActivityTestRule.getActivity();
+        EmailPasswordVerification activity = mActivityTestRule.getActivity();
         onView(withText(R.string.login_invalid)).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
                 check(matches(isDisplayed()));
@@ -144,7 +142,7 @@ public class LoginTest {
         //Wait for 2s for the toast message to appear
         SystemClock.sleep(2000);
         //Check whether there the "Invalid email or password." message appears, if not the test is a success
-        MainActivity activity = mActivityTestRule.getActivity();
+        EmailPasswordVerification activity = mActivityTestRule.getActivity();
         onView(withText(R.string.login_invalid)).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
                 check(matches(isDisplayed()));

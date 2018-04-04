@@ -22,13 +22,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".signup" />
-        <activity android:name=".verification" />
-        <activity android:name=".FingerprintAuth" />
+
+        <activity android:name=".EmailPasswordVerification"
+            android:parentActivityName=".KYCMain"/>
+
+        <activity android:name=".KYCMain"
+            android:parentActivityName=".MainActivity"/>
+
+        <activity android:name=".KYCSecondStep" />
+
+        <activity android:name=".RegisterKYC"
+            android:parentActivityName=".MainActivity"/>
+
         <activity android:name=".SomeHomePage" />
-        <activity android:name=".resetpassword" />
-        <activity android:name=".phoneverification" />
-        <activity android:name=".BarcodeVerification"></activity>
+
+        <activity android:name=".FingerprintVerification"
+            android:parentActivityName=".KYCSecondStep"/>
+
+        <activity android:name=".resetpassword"
+            android:parentActivityName=".KYCMain"/>
+
+        <activity android:name=".SmsOtpVerfication"
+            android:parentActivityName=".KYCSecondStep"/>
+
+        <activity android:name=".BarcodeVerification"
+            android:parentActivityName=".KYCMain"/>
     </application>
 
 </manifest>

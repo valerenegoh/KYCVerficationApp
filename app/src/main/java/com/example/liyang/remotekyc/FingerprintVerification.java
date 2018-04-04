@@ -30,7 +30,7 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
-public class FingerprintAuth extends AppCompatActivity{
+public class FingerprintVerification extends AppCompatActivity{
 
     private static final String KEY_NAME = "EDMTDev";
     private Cipher cipher;
@@ -39,11 +39,15 @@ public class FingerprintAuth extends AppCompatActivity{
     private FingerprintManager.CryptoObject cryptoObject;
     private FingerprintManager fingerprintManager;
     private KeyguardManager keyguardManager;
+    private String name;
 
     protected void onCreate(Bundle savedInstanceState) {
         try {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_registerfingerprint);
+            setContentView(R.layout.activity_fingerprint_verfication);
+
+            Intent i = getIntent();
+            name = i.getStringExtra("name");
 
             //check if device SDK is sufficient (>= 23)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -181,7 +185,9 @@ public class FingerprintAuth extends AppCompatActivity{
         @Override
         public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
             Toast.makeText(context, "Success!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(context, SomeHomePage.class));
+            Intent i = new Intent(context, SomeHomePage.class);
+            i.putExtra("name", name);
+            startActivity(i);
         }
 
         //fingerprint doesn't match any registered on device

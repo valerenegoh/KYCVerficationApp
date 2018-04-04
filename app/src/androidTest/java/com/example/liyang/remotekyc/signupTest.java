@@ -30,7 +30,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 @RunWith(AndroidJUnit4.class)
 public class signupTest {
     @Rule
-    public ActivityTestRule<signup> mActivityTestRule = new ActivityTestRule<>(signup.class);
+    public ActivityTestRule<RegisterKYC> mActivityTestRule = new ActivityTestRule<>(RegisterKYC.class);
 
     @Test //Success Case
     public void Test_success(){
@@ -54,13 +54,13 @@ public class signupTest {
         //find the date of birth edit text and type in the date of birth
         onView(withId(R.id.eddob)).perform(typeText(dob), closeSoftKeyboard());
 
-        //click the signup button
+        //click the RegisterKYC button
         onView(withId(R.id.signup)).perform(click());
 
         //Wait for 2s for the toast message to appear
         SystemClock.sleep(2000);
         //Check whether there the "Creating Acccount.." message appears, if not the test is a fail
-        signup activity = mActivityTestRule.getActivity();
+        RegisterKYC activity = mActivityTestRule.getActivity();
         onView(withText(R.string.success_toast)).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
                 check(matches(isDisplayed()));
@@ -89,13 +89,13 @@ public class signupTest {
         //find the date of birth edit text and type in the date of birth
         onView(withId(R.id.eddob)).perform(typeText(dob), closeSoftKeyboard());
 
-        //click the signup button
+        //click the RegisterKYC button
         onView(withId(R.id.signup)).perform(click());
 
         //Wait for 2s for the toast message to appear
         SystemClock.sleep(2000);
         //Check whether there the "Creating Acccount.." message appears, if not the test is a fail
-        signup activity = mActivityTestRule.getActivity();
+        RegisterKYC activity = mActivityTestRule.getActivity();
         onView(withText(R.string.success_toast)).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
                 check(matches(isDisplayed()));
@@ -123,13 +123,13 @@ public class signupTest {
         //find the date of birth edit text and type in the date of birth
         onView(withId(R.id.eddob)).perform(typeText(dob), closeSoftKeyboard());
 
-        //click the signup button
+        //click the RegisterKYC button
         onView(withId(R.id.signup)).perform(click());
 
         //Wait for 2s for the toast message to appear
         SystemClock.sleep(2000);
         //Check whether there the "Creating Acccount.." message appears, if not the test is a fail
-        signup activity = mActivityTestRule.getActivity();
+        RegisterKYC activity = mActivityTestRule.getActivity();
         onView(withText(R.string.success_toast)).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
                 check(matches(isDisplayed()));
@@ -157,13 +157,13 @@ public class signupTest {
         //find the date of birth edit text and type in the date of birth
         onView(withId(R.id.eddob)).perform(typeText(dob), closeSoftKeyboard());
 
-        //click the signup button
+        //click the RegisterKYC button
         onView(withId(R.id.signup)).perform(click());
 
         //Wait for 2s for the toast message to appear
         SystemClock.sleep(2000);
         //Check whether there the "Creating Acccount.." message appears, if not the test is a fail
-        signup activity = mActivityTestRule.getActivity();
+        RegisterKYC activity = mActivityTestRule.getActivity();
         onView(withText(R.string.success_toast)).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
                 check(matches(isDisplayed()));
@@ -191,13 +191,13 @@ public class signupTest {
         //find the date of birth edit text and type in the date of birth
         onView(withId(R.id.eddob)).perform(typeText(dob), closeSoftKeyboard());
 
-        //click the signup button
+        //click the RegisterKYC button
         onView(withId(R.id.signup)).perform(click());
 
         //Wait for 2s for the toast message to appear
         SystemClock.sleep(2000);
         //Check whether there the "Creating Acccount.." message appears, if not the test is a fail
-        signup activity = mActivityTestRule.getActivity();
+        RegisterKYC activity = mActivityTestRule.getActivity();
         onView(withText(R.string.success_toast)).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
                 check(matches(isDisplayed()));

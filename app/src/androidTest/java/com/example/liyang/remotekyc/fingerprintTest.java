@@ -34,7 +34,7 @@ public class fingerprintTest {
         caps.setCapability("platformName", "Android");
         //set the package
         caps.setCapability("appPackage", "com.example.remotekyc");
-        caps.setCapability("appActivity", "com.example.remotekyc.verification");
+        caps.setCapability("appActivity", "com.example.remotekyc.SomeHomePage");
         //set the file path
         String sFilepath = "build/outputs/apk/app-debug.apk"; // in IDE
         String filePath = new File(sFilepath).getAbsolutePath();

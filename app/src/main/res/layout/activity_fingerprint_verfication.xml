@@ -5,26 +5,30 @@
     android:padding="20dp">
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fingerprint Authentication"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_centerHorizontal="true"/>
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="110dp"/>
 
     <ImageView
-        android:id="@+id/fingerprintimg"
+        android:id="@+id/fingerprinting"
+        android:layout_below="@id/title"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/ic_fingerprint_black_24dp"
-        android:layout_centerInParent="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"/>
 
     <TextView
-        android:layout_below="@id/fingerprintimg"
+        android:layout_below="@id/fingerprinting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/fingerprint_instructions"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
-        android:textSize="20sp"/>
+        android:textSize="18sp"/>
 
 </RelativeLayout>
