@@ -128,7 +128,7 @@
         android:layout_marginLeft="60dp"
         android:ems="10"
         android:hint="+65XXXXXXXX"
-        android:inputType="number"
+        android:inputType="phone"
         android:layout_below="@id/eddob"
         android:layout_toRightOf="@id/eddname"
         android:layout_marginBottom="20dp"/>
