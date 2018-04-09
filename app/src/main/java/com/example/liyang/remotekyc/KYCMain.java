@@ -8,8 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class KYCMain extends AppCompatActivity {
-    private Button emailpw;
-    private Button nric;
+    private Button emailpw,nric,key;
     private TextView registerlink;
 
     @Override
@@ -19,6 +18,7 @@ public class KYCMain extends AppCompatActivity {
 
         emailpw = (Button) findViewById(R.id.email);
         nric = (Button) findViewById(R.id.nric_barcode);
+        key = (Button) findViewById(R.id.key);
         registerlink = (TextView) findViewById(R.id.registerhere);
 
         emailpw.setOnClickListener(new View.OnClickListener() {
@@ -33,6 +33,14 @@ public class KYCMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(KYCMain.this, BarcodeVerification.class);
+                startActivity(i);
+            }
+        });
+
+        key.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(KYCMain.this, SecurityVerification.class);
                 startActivity(i);
             }
         });

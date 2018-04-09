@@ -79,7 +79,8 @@ public class RegisterKYC extends AppCompatActivity {
                                 public void run() {
                                     //Go to the main page after the account has been created, after 4 second delay
                                     mAuth.signOut();
-                                    Intent login = new Intent(RegisterKYC.this, EmailPasswordVerification.class);
+                                    Intent login = new Intent(RegisterKYC.this, securityinfo.class);
+                                    login.putExtra("Email",getemail);
                                     startActivity(login);
                                 }
                             },4000);

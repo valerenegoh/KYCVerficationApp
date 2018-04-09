@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -13,13 +14,14 @@ public class SomeHomePage extends AppCompatActivity {
     Button signout;
     private FirebaseAuth mAuth;
     TextView name;
+    private String getname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.kyc_success);
         mAuth = FirebaseAuth.getInstance();
-//        name = (TextView)findViewById(R.id.name);
+        name = (TextView)findViewById(R.id.name);
         signout = (Button)findViewById(R.id.signout);
 
         //Get the Name of the Current User
@@ -29,8 +31,9 @@ public class SomeHomePage extends AppCompatActivity {
         }*/
 
         Intent i = getIntent();
-        i.getStringExtra("name");
-//        name.setText("Welcome, " + name);
+        getname = i.getExtras().getString("name");
+        //Toast.makeText(SomeHomePage.this,getname, Toast.LENGTH_LONG).show();
+        name.setText("Welcome, " + getname);
 
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
