@@ -11,4 +11,5 @@
     <string name="login_invalid">Invalid email or password.</string>
     <string name="reset_invalid">Invalid email</string>
     <string name="reset_success">An email has been sent to reset your password</string>
+    <string name="crypto_success">Verified</string>
 </resources>
