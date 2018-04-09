@@ -19,3 +19,4 @@ company to verify the identification of a person with confidence.
 - OTP Verification
 - Fingerprint Verification
 - NRIC/QR Code Verification
+- Security Verification (Using Elliptic-Curve Cryptography)
