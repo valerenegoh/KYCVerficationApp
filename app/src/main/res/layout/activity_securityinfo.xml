@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DO NOT REVEAL YOUR PRIVATE KEY TO ANYONE. KEEP IT IN A SAFE AND SECURE PLACE"
+        android:textSize="16sp"
+        android:textColor="#F00"
+        android:id="@+id/note"
+        android:layout_marginBottom="11dp"
+        android:layout_above="@+id/noteone"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="18dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CONTACT ADMINISTRATOR IF YOU HAVE LOST YOUR PRIVATE KEY"
+        android:textSize="16sp"
+        android:textColor="#F00"
+        android:id="@+id/noteone"
+        android:layout_marginBottom="11dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/note" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="publickey here"
+        android:textSize="16sp"
+        android:id="@+id/publickey"
+        android:layout_marginTop="11dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/note" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="privatekey here"
+        android:textSize="16sp"
+        android:id="@+id/privatekey"
+        android:layout_below="@+id/publickey"
+        android:layout_alignStart="@+id/publickey" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="303dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="139dp"
+        android:layout_marginStart="40dp"
+        android:background="@color/yellow"
+        android:onClick="login"
+        android:text="Go to Login" />
+
+
+</RelativeLayout>

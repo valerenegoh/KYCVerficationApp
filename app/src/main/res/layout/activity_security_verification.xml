@@ -8,50 +8,42 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter your email to reset password"
+        android:text="Enter your Private Key"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="20dp"
         android:textSize="20dp"
         android:id="@+id/keyin"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email:"
+        android:text="Private Key:"
         android:layout_margin="10dp"
         android:textSize="18sp"
         android:id="@+id/email"
         android:layout_below="@id/keyin"/>
 
     <EditText
-        android:id="@+id/editemail"
+        android:id="@+id/editpk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="Email"
+        android:hint="Enter Private Key"
         android:layout_below="@id/keyin"
-        android:layout_toRightOf="@id/email"/>
+        android:layout_toRightOf="@id/email"
+        android:inputType="textPassword"/>
 
     <Button
-        android:id="@+id/reset"
-        android:layout_width="350dp"
+        android:id="@+id/authenticate"
+        android:layout_width="342dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editemail"
+        android:layout_below="@id/editpk"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:background="@color/yellow"
-        android:onClick="reset"
-        android:text="Reset Password" />
+        android:onClick="authenticate"
+        android:text="Authenticate" />
 
-    <TextView
-        android:layout_below="@id/reset"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="A special link will be sent to your email shortly."
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="20dp"
-        android:textAlignment="center" />
 </RelativeLayout>
