@@ -47,6 +47,13 @@
 
         <activity android:name=".BarcodeVerification"
             android:parentActivityName=".KYCMain"/>
+
+        <activity android:name=".securityinfo"
+            android:parentActivityName=".RegisterKYC"/>
+
+        <activity android:name=".SecurityVerification"
+            android:parentActivityName=".KYCMain"/>
+
     </application>
 
 </manifest>
