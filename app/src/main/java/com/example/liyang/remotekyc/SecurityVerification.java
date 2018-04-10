@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,10 +24,11 @@ import java.security.Security;
 import java.security.Signature;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.concurrent.Semaphore;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.Date;
+import org.apache.commons.lang3.ArrayUtils;
 
 
 /**
@@ -69,8 +69,12 @@ public class SecurityVerification extends AppCompatActivity {
                 byte[] privateKeyBytes = Base64.decode(getpk, Base64.DEFAULT);
                 final PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(privateKeyBytes);
                 // create a challenge
+                String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
                 final byte[] challenge = new byte[10000];
                 ThreadLocalRandom.current().nextBytes(challenge);
+                byte[] byte_timestamp = timeStamp.getBytes();
+                //Concatenate Random Challenge and Current Timestamp byte arrays to make it unique
+                final byte[] nonce = ArrayUtils.addAll(challenge,byte_timestamp);
                 // sign using the private key
                 try {
                     Security.addProvider(new org.spongycastle.jce.provider.BouncyCastleProvider());
@@ -78,7 +82,7 @@ public class SecurityVerification extends AppCompatActivity {
                     PrivateKey privKey = kf.generatePrivate(keySpec);
                     sig = Signature.getInstance("ECDSA", "SC");
                     sig.initSign(privKey);
-                    sig.update(challenge);
+                    sig.update(nonce);
                     signature = sig.sign();
                 }
                 catch (Exception e) {
@@ -106,15 +110,17 @@ public class SecurityVerification extends AppCompatActivity {
                         } else {
                             System.out.println("Not Added");
                         }
+
                         int i = 0;
                         while(i<listofPublicKeys.size()){
                             String test = listofPublicKeys.get(i);
+                            //Toast.makeText(SecurityVerification.this, listofPublicKeys.get(i), Toast.LENGTH_LONG).show();
                             byte[] publicKeyBytes = Base64.decode(test, Base64.DEFAULT);
                             X509EncodedKeySpec spec = new X509EncodedKeySpec(publicKeyBytes);
                             try {
                                 PublicKey pubKey = kf.generatePublic(spec);
                                 sig.initVerify(pubKey);
-                                sig.update(challenge);
+                                sig.update(nonce);
                                 verified[0] = sig.verify(signature);
                                 //Toast.makeText(SecurityVerification.this, Boolean.toString(verified[0]), Toast.LENGTH_LONG).show();
                             } catch (Exception e) {
@@ -129,9 +135,6 @@ public class SecurityVerification extends AppCompatActivity {
                                 checked[0] = false;
                             }
                         }
-
-
-
 
                     }
 
