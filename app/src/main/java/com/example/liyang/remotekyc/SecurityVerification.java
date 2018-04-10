@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import java.security.KeyFactory;
+import java.security.MessageDigest;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.Security;
@@ -26,6 +27,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.Date;
 import org.apache.commons.lang3.ArrayUtils;
@@ -75,14 +77,18 @@ public class SecurityVerification extends AppCompatActivity {
                 byte[] byte_timestamp = timeStamp.getBytes();
                 //Concatenate Random Challenge and Current Timestamp byte arrays to make it unique
                 final byte[] nonce = ArrayUtils.addAll(challenge,byte_timestamp);
+                byte[] digest = null;
                 // sign using the private key
                 try {
+                    MessageDigest md = MessageDigest.getInstance("MD5");
+                    md.update(nonce);
+                    digest = md.digest();
                     Security.addProvider(new org.spongycastle.jce.provider.BouncyCastleProvider());
                     kf = KeyFactory.getInstance("ECDSA", "SC");
                     PrivateKey privKey = kf.generatePrivate(keySpec);
-                    sig = Signature.getInstance("ECDSA", "SC");
+                    sig = Signature.getInstance("SHA256withECDSA", "SC");
                     sig.initSign(privKey);
-                    sig.update(nonce);
+                    sig.update(digest);
                     signature = sig.sign();
                 }
                 catch (Exception e) {
@@ -93,6 +99,7 @@ public class SecurityVerification extends AppCompatActivity {
                 final boolean[] checked = new boolean[1];
                 addData =
                         FirebaseDatabase.getInstance().getReference("Users").orderByChild("Publickey");
+                final byte[] finalDigest = digest;
                 ValueEventListener valueEventListener = addData.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -117,16 +124,21 @@ public class SecurityVerification extends AppCompatActivity {
                             //Toast.makeText(SecurityVerification.this, listofPublicKeys.get(i), Toast.LENGTH_LONG).show();
                             byte[] publicKeyBytes = Base64.decode(test, Base64.DEFAULT);
                             X509EncodedKeySpec spec = new X509EncodedKeySpec(publicKeyBytes);
+                            byte[] checkdigest = null;
                             try {
+                                MessageDigest md = MessageDigest.getInstance("MD5");
+                                md.update(nonce);
+                                checkdigest = md.digest();
                                 PublicKey pubKey = kf.generatePublic(spec);
                                 sig.initVerify(pubKey);
-                                sig.update(nonce);
+                                sig.update(finalDigest);
                                 verified[0] = sig.verify(signature);
                                 //Toast.makeText(SecurityVerification.this, Boolean.toString(verified[0]), Toast.LENGTH_LONG).show();
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
-                            if (verified[0]) {
+                            //Verify Integrity of Challenge and also verify Signature
+                            if (verified[0]&& Arrays.equals(finalDigest,checkdigest)) {
                                 checked[0] = true;
                                 chosen_name[0] = listofNames.get(i);
                                 break;
@@ -156,7 +168,7 @@ public class SecurityVerification extends AppCompatActivity {
                             //Toast.makeText(SecurityVerification.this,name[0], Toast.LENGTH_LONG).show();
                         }
                         else{
-                            Toast.makeText(SecurityVerification.this,"Verification Failed: Contact Administrator Immediately", Toast.LENGTH_LONG).show();
+                            Toast.makeText(SecurityVerification.this,R.string.cryto_failure, Toast.LENGTH_LONG).show();
                         }
                     }
 
