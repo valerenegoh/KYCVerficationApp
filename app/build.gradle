@@ -34,6 +34,13 @@ dependencies {
     implementation 'com.madgag.spongycastle:prov:1.54.0.0'
     implementation 'com.madgag.spongycastle:pkix:1.54.0.0'
     implementation 'com.madgag.spongycastle:pg:1.54.0.0'
+    implementation 'org.apache.commons:commons-lang3:3.6'
+    compile('org.bitcoinj:bitcoinj-core:0.14.7') {
+        exclude module: 'scrypt'
+    }
+
+
+
     testCompile 'junit:junit:4.12'
 
 }
