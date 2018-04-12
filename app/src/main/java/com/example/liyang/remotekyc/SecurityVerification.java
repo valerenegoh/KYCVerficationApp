@@ -183,7 +183,7 @@ public class SecurityVerification extends AppCompatActivity {
                             //Toast.makeText(SecurityVerification.this,name[0], Toast.LENGTH_LONG).show();
                         }
                         else{
-                            Toast.makeText(SecurityVerification.this,R.string.cryto_failure, Toast.LENGTH_LONG).show();
+                            Toast.makeText(SecurityVerification.this,R.string.crypto_failure, Toast.LENGTH_LONG).show();
                         }
                     }
 
