@@ -22,23 +22,13 @@ import org.spongycastle.asn1.x9.X9ECParameters;
 import org.spongycastle.jcajce.provider.symmetric.ARC4;
 import org.spongycastle.jce.interfaces.ECPrivateKey;
 import org.spongycastle.jce.interfaces.ECPublicKey;
-
-import java.math.BigInteger;
-import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
-import java.security.PrivateKey;
-import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.security.Security;
 import java.security.spec.ECGenParameterSpec;
-import java.security.spec.ECParameterSpec;
-import java.security.spec.ECPrivateKeySpec;
-import java.util.Formatter;
-import java.math.*;
-
 import org.bitcoinj.core.Base58;
-import org.spongycastle.jce.spec.ECNamedCurveSpec;
+
 
 
 /**
@@ -50,9 +40,8 @@ public class securityinfo extends AppCompatActivity {
     private Query addData;
     private FirebaseDatabase mref;
     private DatabaseReference mDatabase;
-    private String email,key,publick,address;
+    private String email,key,publick;
     private Button login;
-    final private static char[] hexArray = "0123456789abcdef".toCharArray();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +49,6 @@ public class securityinfo extends AppCompatActivity {
         setContentView(R.layout.activity_securityinfo);
         publickey = (TextView) findViewById(R.id.publickey);
         privatekey = (TextView) findViewById(R.id.privatekey);
-        addresstext = (TextView) findViewById(R.id.address);
         login = (Button) findViewById(R.id.login);
         mref = FirebaseDatabase.getInstance();
         mDatabase = mref.getReference();
@@ -91,7 +79,6 @@ public class securityinfo extends AppCompatActivity {
                 }
                 //Toast.makeText(securityinfo.this,key, Toast.LENGTH_LONG).show();
                 mDatabase.child("Users").child(key).child("Publickey").setValue(publick);
-                mDatabase.child("Users").child(key).child("Address").setValue(address);
 
             }
 
@@ -119,14 +106,9 @@ public class securityinfo extends AppCompatActivity {
         String privatek = Base58.encode(encodedPrivateKey);
         publickey.setText("PUBLIC KEY: "+ publick);
         privatekey.setText("PRIVATE KEY: "+privatek);
-        ECKey gen_address =ECKey.fromPrivate(encodedPrivateKey);
-        byte[] byte_address = gen_address.getPubKeyHash();
-        address = Base58.encode(byte_address);
-        addresstext.setText("ADDRESS: "+ address);
         //For Test and Debugging
         Log.i("Public Key",publick);
         Log.i("Private Key",privatek);
-        Log.i("Address",address);
     }
 
 }

@@ -25,22 +25,15 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.Security;
 import java.security.Signature;
-import java.security.spec.ECParameterSpec;
-import java.security.spec.ECPrivateKeySpec;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.Date;
 import org.apache.commons.lang3.ArrayUtils;
 import org.bitcoinj.core.Base58;
-import org.bitcoinj.core.ECKey;
-import org.spongycastle.asn1.x9.ECNamedCurveTable;
-import org.spongycastle.asn1.x9.X9ECParameters;
-import org.spongycastle.jce.interfaces.ECPrivateKey;
-import org.spongycastle.jce.spec.ECNamedCurveSpec;
+
 
 
 /**
@@ -59,7 +52,6 @@ public class SecurityVerification extends AppCompatActivity {
     private byte[] signature;
     private ArrayList<String> listofPublicKeys = new ArrayList<String>();
     private ArrayList<String> listofNames = new ArrayList<String>();
-    private ArrayList<String> listofAddress = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,9 +79,6 @@ public class SecurityVerification extends AppCompatActivity {
                 //Concatenate Random Challenge and Current Timestamp byte arrays to make it unique
                 final byte[] nonce = ArrayUtils.addAll(challenge,byte_timestamp);
                 byte[] digest = null;
-                ECKey gen_address =ECKey.fromPrivate(privateKeyBytes);
-                byte[] byte_address = gen_address.getPubKeyHash();
-                final String address = Base58.encode(byte_address);
                 // sign using the private key
                 try {
                     MessageDigest md = MessageDigest.getInstance("MD5");
@@ -118,9 +107,7 @@ public class SecurityVerification extends AppCompatActivity {
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot data : dataSnapshot.getChildren()) {
                                 String publickey = data.child("Publickey").getValue(String.class);
-                                String check_address = data.child("Address").getValue(String.class);
                                 listofPublicKeys.add(publickey);
-                                listofAddress.add(check_address);
                                 name[0] = data.child("name").getValue(String.class);
                                 listofNames.add(name[0]);
                                 //Toast.makeText(SecurityVerification.this,publickey, Toast.LENGTH_LONG).show();
@@ -135,7 +122,6 @@ public class SecurityVerification extends AppCompatActivity {
                         int i = 0;
                         while(i<listofPublicKeys.size()){
                             String check_publicKeys = listofPublicKeys.get(i);
-                            String get_address = listofAddress.get(i);
                             //Toast.makeText(SecurityVerification.this, listofPublicKeys.get(i), Toast.LENGTH_LONG).show();
                             byte[] publicKeyBytes = Base58.decode(check_publicKeys);
                             X509EncodedKeySpec spec = new X509EncodedKeySpec(publicKeyBytes);
@@ -153,7 +139,7 @@ public class SecurityVerification extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                             //Verify the address matches and also verify Signature
-                            if (verified[0]&& get_address.equals(address)) {
+                            if (verified[0]) {
                                 checked[0] = true;
                                 chosen_name[0] = listofNames.get(i);
                                 break;
@@ -183,7 +169,7 @@ public class SecurityVerification extends AppCompatActivity {
                             //Toast.makeText(SecurityVerification.this,name[0], Toast.LENGTH_LONG).show();
                         }
                         else{
-                            Toast.makeText(SecurityVerification.this,R.string.crypto_failure, Toast.LENGTH_LONG).show();
+                            Toast.makeText(SecurityVerification.this,R.string.cryto_failure, Toast.LENGTH_LONG).show();
                         }
                     }
 
