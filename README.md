@@ -1,6 +1,6 @@
 # 50.003 Remote KYC (Provided By IBM)
 
-[logo.pptx](https://github.com/ValereneGoh/KYCVerficationApp/files/1921882/logo.pptx)
+![logoo2](https://user-images.githubusercontent.com/23626462/38903065-c2f91cc0-42d5-11e8-8012-dd33eba8baa2.png)
 
 Current Know-Your-Customer (KYC) processes typically require a Face-to-Face (F2F) verification whereby a human needs to verify the identity of a person (e.g. passport and NRIC) against their physical identity.
 The objective of this project is to:
@@ -51,11 +51,22 @@ Another example, Company B may want foolproof authentication that its employees 
 
 <img width="443" alt="nine" src="https://user-images.githubusercontent.com/23626462/38902916-281f212c-42d5-11e8-9d8f-19716c769a86.PNG">
 
+## Testing
+
 <img width="438" alt="elevn" src="https://user-images.githubusercontent.com/23626462/38902932-375faa62-42d5-11e8-8c8e-752ed31d1f40.PNG">
 
-<img width="429" alt="twelve" src="https://user-images.githubusercontent.com/23626462/38902934-392c198e-42d5-11e8-9c1d-
-cb6e67a7f0c6.PNG">
+<img width="429" alt="twelve" src="https://user-images.githubusercontent.com/23626462/38903072-c8b3d7d6-42d5-11e8-9b98-6cdc6305237f.PNG">
 
-<img width="436" alt="thirteen" src="https://user-images.githubusercontent.com/23626462/38902936-3ac358a2-42d5-11e8-8173-
-4056453da7f5.PNG">
+<img width="436" alt="thirteen" src="https://user-images.githubusercontent.com/23626462/38903073-c9942d0e-42d5-11e8-92ae-17798b9d3e93.PNG">
 
+
+## Future Works
+
+- Creating a wallet to help users store their Private Keys securely
+  - Help users ensure that their private keys are not compromised
+
+- Ensure Zero-Knowledge-Proof
+  - Allow users to prove their identity without revealing private data for security and privacy purposes
+
+- Allow companies to set different verification methods for accessing segments of the company website with different degrees of sensitivity
+  -Balance between ease of access and security
