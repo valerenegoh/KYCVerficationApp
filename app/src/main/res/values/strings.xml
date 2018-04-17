@@ -13,4 +13,5 @@
     <string name="reset_success">An email has been sent to reset your password</string>
     <string name="crypto_success">Verified</string>
     <string name="crypto_failure">Verification failed</string>
+    <string name="cryto_failure">Verification Failed: Contact Administrator Immediately</string>
 </resources>

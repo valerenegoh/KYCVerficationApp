@@ -1,4 +1,4 @@
-package com.example.liyang.remotekyc;
+package com.example.liyang.remotekyc.FirstStep;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +7,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class BarcodeVerification extends AppCompatActivity {
+import com.example.liyang.remotekyc.SecondStep.KYCSecondStep;
+import com.example.liyang.remotekyc.R;
+
+public class BarcodeAuthentication extends AppCompatActivity {
     //can only be run on actual phone and not emulator
     //this code uses the Google Barcode Scanner app to scan the barcode
     //to run this code on phone, the scanner needs to be installed
@@ -21,7 +24,7 @@ public class BarcodeVerification extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_barcode_verification);
+        setContentView(R.layout.barcode_authentication);
     }
 
     //call this method to use the NRIC barcode in other classes
@@ -55,7 +58,7 @@ public class BarcodeVerification extends AppCompatActivity {
                     tvStatus.setText(intent.getStringExtra("SCAN_RESULT_FORMAT"));
                     tvResult.setText(nricBarcode);
 
-                    Intent i = new Intent(BarcodeVerification.this, KYCSecondStep.class);
+                    Intent i = new Intent(BarcodeAuthentication.this, KYCSecondStep.class);
                     i.putExtra("nric", nricBarcode);
                     startActivity(i);
                 } else if (resultCode == RESULT_CANCELED) {

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your Private Key"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="20dp"
+        android:id="@+id/keyin"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Private Key:"
+        android:layout_margin="10dp"
+        android:textSize="18sp"
+        android:id="@+id/email"
+        android:layout_below="@id/keyin"/>
+
+    <EditText
+        android:id="@+id/editpk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:ems="10"
+        android:hint="Enter Private Key"
+        android:layout_below="@id/keyin"
+        android:layout_toRightOf="@id/email"
+        android:inputType="textPassword"/>
+
+    <Button
+        android:id="@+id/authenticate"
+        android:layout_width="342dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editpk"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@color/yellow"
+        android:onClick="authenticate"
+        android:text="Authenticate" />
+
+</RelativeLayout>

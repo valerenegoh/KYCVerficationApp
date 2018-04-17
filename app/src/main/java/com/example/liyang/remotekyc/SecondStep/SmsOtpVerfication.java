@@ -1,4 +1,4 @@
-package com.example.liyang.remotekyc;
+package com.example.liyang.remotekyc.SecondStep;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.liyang.remotekyc.R;
+import com.example.liyang.remotekyc.SomeHomePage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -35,7 +37,7 @@ public class SmsOtpVerfication extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sms_verification);
+        setContentView(R.layout.sms_verification);
         textphone = (TextView)findViewById(R.id.number);
         textverify = (TextView)findViewById(R.id.verify);
         phoneverify = (EditText) findViewById(R.id.phoneverify);

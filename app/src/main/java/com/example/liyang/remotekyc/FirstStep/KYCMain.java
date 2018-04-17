@@ -1,4 +1,4 @@
-package com.example.liyang.remotekyc;
+package com.example.liyang.remotekyc.FirstStep;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.liyang.remotekyc.R;
+import com.example.liyang.remotekyc.RegisterKYC;
 
 public class KYCMain extends AppCompatActivity {
     private Button emailpw,nric,key;
@@ -24,7 +27,7 @@ public class KYCMain extends AppCompatActivity {
         emailpw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(KYCMain.this, EmailPasswordVerification.class);
+                Intent i = new Intent(KYCMain.this, EmailPasswordAuthentication.class);
                 startActivity(i);
             }
         });
@@ -32,7 +35,7 @@ public class KYCMain extends AppCompatActivity {
         nric.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(KYCMain.this, BarcodeVerification.class);
+                Intent i = new Intent(KYCMain.this, BarcodeAuthentication.class);
                 startActivity(i);
             }
         });

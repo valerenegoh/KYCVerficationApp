@@ -60,36 +60,47 @@
 
     <Button
         android:id="@+id/fingerprint"
-        android:layout_below="@id/first_verification"
-        android:layout_width="match_parent"
+        android:layout_width="347dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="157dp"
+        android:background="@color/yellow"
         android:text="complete with fingerprint"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:textStyle="bold"
         android:textColor="@color/white"
-        android:background="@color/yellow"/>
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/sms"
-        android:layout_below="@id/fingerprint"
-        android:layout_width="match_parent"
+        android:layout_width="347dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="102dp"
+        android:background="@color/yellow"
         android:text="complete with sms otp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:textStyle="bold"
         android:textColor="@color/white"
-        android:background="@color/yellow"/>
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/facial"
+        android:layout_width="347dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="46dp"
+        android:background="@color/yellow"
+        android:text="Facial Recognition"
+        android:textColor="@color/white"
+        android:onClick="HandleClick"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/register"
-        android:layout_below="@+id/sms"
+        android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
         android:layout_centerHorizontal="true"
         android:text="Almost there... Just one more step!"/>
 </RelativeLayout>

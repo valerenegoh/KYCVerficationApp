@@ -10,7 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -38,10 +38,9 @@ dependencies {
     compile('org.bitcoinj:bitcoinj-core:0.14.7') {
         exclude module: 'scrypt'
     }
-
-
-
+    compile 'com.github.ctodobom:OpenCV-3.1.0-Android:-SNAPSHOT'
+    compile files('libs/javacpp.jar')
+    compile files('libs/javacv.jar')
     testCompile 'junit:junit:4.12'
-
 }
 apply plugin: 'com.google.gms.google-services'

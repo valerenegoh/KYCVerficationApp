@@ -72,7 +72,7 @@
 
     <Button
         android:id="@+id/nric_barcode"
-        android:layout_width="345dp"
+        android:layout_width="347dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -84,7 +84,7 @@
 
     <Button
         android:id="@+id/key"
-        android:layout_width="345dp"
+        android:layout_width="347dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

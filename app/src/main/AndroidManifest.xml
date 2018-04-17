@@ -7,10 +7,30 @@
         android:required="true" />
 
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
+
+    <uses-feature
+        android:name="android.hardware.camera"/>
+    <uses-feature
+        android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:name="android.hardware.camera.front" />
+    <uses-feature
+        android:name="android.hardware.camera.front.autofocus"/>
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ducky2"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -23,37 +43,46 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".EmailPasswordVerification"
-            android:parentActivityName=".KYCMain"/>
+        <activity android:name=".FirstStep.EmailPasswordAuthentication"
+            android:parentActivityName=".FirstStep.KYCMain"/>
 
-        <activity android:name=".KYCMain"
+        <activity android:name=".FirstStep.KYCMain"
             android:parentActivityName=".MainActivity"/>
 
-        <activity android:name=".KYCSecondStep" />
+        <activity android:name=".SecondStep.KYCSecondStep" />
 
         <activity android:name=".RegisterKYC"
             android:parentActivityName=".MainActivity"/>
 
         <activity android:name=".SomeHomePage" />
 
-        <activity android:name=".FingerprintVerification"
-            android:parentActivityName=".KYCSecondStep"/>
+        <activity android:name=".SecondStep.FingerprintVerification"
+            android:parentActivityName=".SecondStep.KYCSecondStep"/>
 
         <activity android:name=".resetpassword"
-            android:parentActivityName=".KYCMain"/>
+            android:parentActivityName=".FirstStep.KYCMain"/>
 
-        <activity android:name=".SmsOtpVerfication"
-            android:parentActivityName=".KYCSecondStep"/>
+        <activity android:name=".SecondStep.SmsOtpVerfication"
+            android:parentActivityName=".SecondStep.KYCSecondStep"/>
 
-        <activity android:name=".BarcodeVerification"
-            android:parentActivityName=".KYCMain"/>
+        <activity android:name=".FirstStep.BarcodeAuthentication"
+            android:parentActivityName=".FirstStep.KYCMain"/>
 
         <activity android:name=".securityinfo"
             android:parentActivityName=".RegisterKYC"/>
 
-        <activity android:name=".SecurityVerification"
-            android:parentActivityName=".KYCMain"/>
+        <activity android:name=".FirstStep.SecurityVerification"
+            android:parentActivityName=".FirstStep.KYCMain"/>
+
+        <activity android:name=".FacialRecognition.Training"
+            android:screenOrientation="landscape"
+            android:parentActivityName=".RegisterKYC"/>
+
+        <activity android:name=".FacialRecognition.NameActivity"
+            android:windowSoftInputMode="adjustNothing"/>
+
+        <activity android:name=".FacialRecognition.FacialRecognitionVerification"
+            android:screenOrientation="landscape"/>
 
     </application>
-
 </manifest>

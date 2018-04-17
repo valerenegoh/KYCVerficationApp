@@ -5,6 +5,8 @@ import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.example.liyang.remotekyc.FirstStep.EmailPasswordAuthentication;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,7 +37,7 @@ public class LoginTest {
     to continue the last test
      */
     @Rule
-    public ActivityTestRule<EmailPasswordVerification> mActivityTestRule = new ActivityTestRule<>(EmailPasswordVerification.class);
+    public ActivityTestRule<EmailPasswordAuthentication> mActivityTestRule = new ActivityTestRule<>(EmailPasswordAuthentication.class);
 
     @Test //Success Case
     public void Test_success(){
@@ -54,7 +56,7 @@ public class LoginTest {
         //Wait for 2s for the toast message to appear
         SystemClock.sleep(2000);
         //Check whether there the "Invalid email or password." message appears, if not the test is a fail
-        EmailPasswordVerification activity = mActivityTestRule.getActivity();
+        EmailPasswordAuthentication activity = mActivityTestRule.getActivity();
         onView(withText(R.string.login_invalid)).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
                 check(matches(isDisplayed()));
@@ -74,7 +76,7 @@ public class LoginTest {
         //Wait for 2s for the toast message to appear
         SystemClock.sleep(2000);
         //Check whether there the "Please enter your email." message appears, if not the test is a success
-        EmailPasswordVerification activity = mActivityTestRule.getActivity();
+        EmailPasswordAuthentication activity = mActivityTestRule.getActivity();
         onView(withText(R.string.login_emptyemail)).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
                 check(matches(isDisplayed()));
@@ -94,7 +96,7 @@ public class LoginTest {
         //Wait for 2s for the toast message to appear
         SystemClock.sleep(2000);
         //Check whether there the "Please enter your password." message appears, if not the test is a success
-        EmailPasswordVerification activity = mActivityTestRule.getActivity();
+        EmailPasswordAuthentication activity = mActivityTestRule.getActivity();
         onView(withText(R.string.login_emptypass)).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
                 check(matches(isDisplayed()));
@@ -118,7 +120,7 @@ public class LoginTest {
         //Wait for 2s for the toast message to appear
         SystemClock.sleep(2000);
         //Check whether there the "Invalid email or password." message appears, if not the test is a success
-        EmailPasswordVerification activity = mActivityTestRule.getActivity();
+        EmailPasswordAuthentication activity = mActivityTestRule.getActivity();
         onView(withText(R.string.login_invalid)).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
                 check(matches(isDisplayed()));
@@ -142,7 +144,7 @@ public class LoginTest {
         //Wait for 2s for the toast message to appear
         SystemClock.sleep(2000);
         //Check whether there the "Invalid email or password." message appears, if not the test is a success
-        EmailPasswordVerification activity = mActivityTestRule.getActivity();
+        EmailPasswordAuthentication activity = mActivityTestRule.getActivity();
         onView(withText(R.string.login_invalid)).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
                 check(matches(isDisplayed()));

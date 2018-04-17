@@ -1,4 +1,4 @@
-package com.example.liyang.remotekyc;
+package com.example.liyang.remotekyc.SecondStep;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.liyang.remotekyc.R;
+import com.example.liyang.remotekyc.SomeHomePage;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -14,10 +16,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class KYCSecondStep  extends AppCompatActivity {
-    private Button fingerprint, sms;
+    private Button fingerprint, sms, face;
     private String email, nric, phone, name;
     private FirebaseDatabase database;
     private DatabaseReference ref;
+    private String scanned;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,7 @@ public class KYCSecondStep  extends AppCompatActivity {
 
             fingerprint = (Button) findViewById(R.id.fingerprint);
             sms = (Button) findViewById(R.id.sms);
+            face = (Button) findViewById(R.id.facial);
             database = FirebaseDatabase.getInstance();
             ref = database.getReference();
 
@@ -86,8 +90,40 @@ public class KYCSecondStep  extends AppCompatActivity {
                     startActivity(i);
                 }
             });
+
+//            face.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent i = new Intent(KYCSecondStep.this, FacialRecognitionVerification.class);
+//                    startActivity(i);
+//                }
+//            });
         } catch(Exception e){
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void HandleClick(View arg0) {
+        String packageName = "cultoftheunicorn.marvel";
+        Intent intent = getPackageManager().getLaunchIntentForPackage(packageName);
+        if(intent != null) {
+            startActivity(intent);
+        }
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == 0) {
+            try {
+                if (resultCode == RESULT_OK) {
+                    this.scanned = intent.getStringExtra("SCAN_RESULT");
+
+                    Intent i = new Intent(KYCSecondStep.this, SomeHomePage.class);
+                    i.putExtra("name", scanned);
+                    startActivity(i);
+                }
+            } catch (Exception e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
         }
     }
 }

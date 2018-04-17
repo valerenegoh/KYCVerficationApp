@@ -1,4 +1,4 @@
-package com.example.liyang.remotekyc;
+package com.example.liyang.remotekyc.SecondStep;
 
 import android.app.KeyguardManager;
 import android.content.Context;
@@ -14,6 +14,9 @@ import android.security.keystore.KeyProperties;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
+
+import com.example.liyang.remotekyc.R;
+import com.example.liyang.remotekyc.SomeHomePage;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
@@ -44,7 +47,7 @@ public class FingerprintVerification extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         try {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_fingerprint_verfication);
+            setContentView(R.layout.fingerprint_verfication);
 
             Intent i = getIntent();
             name = i.getStringExtra("name");

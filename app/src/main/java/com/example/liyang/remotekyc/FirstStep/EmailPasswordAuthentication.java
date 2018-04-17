@@ -1,4 +1,4 @@
-package com.example.liyang.remotekyc;
+package com.example.liyang.remotekyc.FirstStep;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +11,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.liyang.remotekyc.SecondStep.KYCSecondStep;
+import com.example.liyang.remotekyc.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class EmailPasswordVerification extends AppCompatActivity {
+public class EmailPasswordAuthentication extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private EditText email,password;
@@ -28,7 +30,7 @@ public class EmailPasswordVerification extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         try {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_emailpw_verification);
+            setContentView(R.layout.emailpw_authentication);
 
             mAuth = FirebaseAuth.getInstance();
             email = (EditText) findViewById(R.id.email);
@@ -40,7 +42,7 @@ public class EmailPasswordVerification extends AppCompatActivity {
             forgetpass.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent resetpassword = new Intent(EmailPasswordVerification.this, resetpassword.class);
+                    Intent resetpassword = new Intent(EmailPasswordAuthentication.this, com.example.liyang.remotekyc.resetpassword.class);
                     startActivity(resetpassword);
                 }
             });
@@ -76,9 +78,9 @@ public class EmailPasswordVerification extends AppCompatActivity {
                         //If Sign In failed, displays a message to the user
                         if (!task.isSuccessful()) {
                             Log.v("Testing", "SignInwithEmail:Failed", task.getException());
-                            Toast.makeText(EmailPasswordVerification.this, R.string.login_invalid, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EmailPasswordAuthentication.this, R.string.login_invalid, Toast.LENGTH_SHORT).show();
                         } else {
-                            Intent verification = new Intent(EmailPasswordVerification.this, KYCSecondStep.class);
+                            Intent verification = new Intent(EmailPasswordAuthentication.this, KYCSecondStep.class);
                             finish();
                             verification.putExtra("email", getemail);
                             startActivity(verification);

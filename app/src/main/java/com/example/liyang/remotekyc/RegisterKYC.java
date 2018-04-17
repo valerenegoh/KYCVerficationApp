@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 
 public class RegisterKYC extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    private Button signup;
+    private Button signup, facetrain;
     private EditText email, password, name, nric, eddob, phone;
     private FirebaseDatabase mref;
     private DatabaseReference rootRef;
@@ -42,6 +42,7 @@ public class RegisterKYC extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         signup = (Button) findViewById(R.id.signup);
+        facetrain = (Button) findViewById(R.id.train_my_face);
         email = (EditText) findViewById(R.id.edemail);
         password = (EditText) findViewById(R.id.edpassword);
         name = (EditText) findViewById(R.id.name);
@@ -50,6 +51,14 @@ public class RegisterKYC extends AppCompatActivity {
         phone = (EditText) findViewById(R.id.phone);
         mref = FirebaseDatabase.getInstance();
         rootRef = mref.getReference();
+
+//        facetrain.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(RegisterKYC.this, NameActivity.class);
+//                startActivity(i);
+//            }
+//        });
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -260,6 +269,14 @@ public class RegisterKYC extends AppCompatActivity {
                     }
                 }
             });
+        }
+    }
+
+    public void HandleClick(View arg0) {
+        String packageName = "cultoftheunicorn.marvel";
+        Intent intent = getPackageManager().getLaunchIntentForPackage(packageName);
+        if(intent != null) {
+            startActivity(intent);
         }
     }
 }

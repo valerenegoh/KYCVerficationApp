@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -33,7 +32,7 @@ public class SomeHomePage extends AppCompatActivity {
         Intent i = getIntent();
         getname = i.getExtras().getString("name");
         //Toast.makeText(SomeHomePage.this,getname, Toast.LENGTH_LONG).show();
-        name.setText("Welcome, " + getname);
+        name.setText("Welcome, " + "Valerene");
 
         signout.setOnClickListener(new View.OnClickListener() {
             @Override

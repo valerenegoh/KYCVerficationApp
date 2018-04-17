@@ -136,12 +136,24 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="signup"
-        android:text="Sign Up"
-        android:id="@+id/signup"
+        android:text="train my face"
+        android:onClick="HandleClick"
+        android:id="@+id/train_my_face"
         android:background="@color/yellow"
         android:layout_margin="10dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/phone"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:onClick="signup"
+        android:text="Sign Up"
+        android:id="@+id/signup"
+        android:background="@color/yellow"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

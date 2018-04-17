@@ -9,6 +9,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/openCVLibrary2410" />
+            <option value="$PROJECT_DIR$/opencv_java" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
