@@ -5,11 +5,14 @@ The objective of this project is to:
 - Design an application/software that allows a company to verify the identification of a person with confidence by leveraging on multiple cross verification factors to ensure that the identity document provided by the user does in fact belong to the user; and
 - Ensure a convenient, fast and secure verification process for the user
 
+Video link:
+
+
 ## Contributors
-- Tan Li Yang:          Database, Registration, Email/PW Verification, Cryptographic Verfication, SMS OTP Verification, Unit Testing
-- Tracy Yee Enying:     Report contents, NRIC Barcode Verification, System & Robustness Testing
-- Valerene Goh Ze Yi:   UI/UX & Integration, Facial Verification, Facial Recognition Verification, Fingerprint Verification, Unit Testing
-- Chua Xiao Wei:        Video
+- **Tan Li Yang**:    Database, Registration, Email/PW Verification, Cryptographic Verfication, SMS OTP Verification, Unit Testing
+- **Tracy Yee:**      Report contents, NRIC Barcode Verification, System & Robustness Testing
+- **Valerene Goh:**   UI/UX & Integration, Facial Verification, Facial Recognition Verification, Fingerprint Verification, Unit Testing
+- **Chua Xiao Wei:**  Video
 
 ## Features Implemented
 Based on the companies' needs, we provide a range of verification solutions for user identification. The variety of verification/authenticaion methods for the first and second steps are versatile and can be implemented flexibly based on the requirements of the company.
