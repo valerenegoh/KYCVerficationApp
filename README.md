@@ -1,13 +1,11 @@
 # 50.003 Remote KYC (Provided By IBM)
-
 ![logoo2](https://user-images.githubusercontent.com/23626462/38903065-c2f91cc0-42d5-11e8-8012-dd33eba8baa2.png)
-
 Current Know-Your-Customer (KYC) processes typically require a Face-to-Face (F2F) verification whereby a human needs to verify the identity of a person (e.g. passport and NRIC) against their physical identity.
 The objective of this project is to:
 (i) design an application/software that allows a company to verify the identification of a person with confidence by leveraging on multiple cross verification factors to ensure that the identity document provided by the user does in fact belong to the user; and
 (ii) ensure a convenient, fast and secure verification process for the user
 
-
+<br />
 
 ## Contributors
 - Tan Li Yang:          Database, Registration, Email/PW Verification, Cryptographic Verfication, SMS OTP Verification, Unit Testing
@@ -15,7 +13,7 @@ The objective of this project is to:
 - Valerene Goh Ze Yi:   UI/UX & Integration, Facial Verification, Facial Recognition Verification, Fingerprint Verification, Unit Testing
 - Chua Xiao Wei:        Video
 
-
+<br />
 
 ## Features Implemented
 Based on the companies' needs, we provide a range of verification solutions for user identification. The variety of verification/authenticaion methods for the first and second steps are versatile and can be implemented flexibly based on the requirements of the company.
@@ -39,23 +37,25 @@ Another example, Company B may want foolproof authentication that its employees 
 
 <img width="630" alt="use cases" src="https://user-images.githubusercontent.com/23626462/38902956-52908c98-42d5-11e8-892c-bd36afa6bea4.PNG">
 
+___
+
 ![one](https://user-images.githubusercontent.com/23626462/38902868-f4586fec-42d4-11e8-9a03-8cf155fa0356.png)
-
+___
 <img width="432" alt="two" src="https://user-images.githubusercontent.com/23626462/38902875-00035a46-42d5-11e8-9f52-bc61fcd12ae2.PNG">
-
+___
 <img width="445" alt="three" src="https://user-images.githubusercontent.com/23626462/38902876-00dabff4-42d5-11e8-851b-c4de6ccc85d3.PNG">
-
+___
 <img width="434" alt="four" src="https://user-images.githubusercontent.com/23626462/38902888-08f4bb36-42d5-11e8-870b-9cefc9907d50.PNG">
-
+___
 <img width="436" alt="five" src="https://user-images.githubusercontent.com/23626462/38902890-09eeb140-42d5-11e8-9bdf-c74de5bcdf72.PNG">
-
+___
 <img width="433" alt="six" src="https://user-images.githubusercontent.com/23626462/38902891-0d6f037e-42d5-11e8-942b-7d844c7feba0.PNG">
-
+___
 <img width="446" alt="seven" src="https://user-images.githubusercontent.com/23626462/38902905-1b06db38-42d5-11e8-936a-1b41ddd73592.PNG">
-
+___
 <img width="443" alt="nine" src="https://user-images.githubusercontent.com/23626462/38902916-281f212c-42d5-11e8-9d8f-19716c769a86.PNG">
 
-
+<br />
 
 ## Testing
 
@@ -65,7 +65,7 @@ Another example, Company B may want foolproof authentication that its employees 
 
 <img width="436" alt="thirteen" src="https://user-images.githubusercontent.com/23626462/38903073-c9942d0e-42d5-11e8-92ae-17798b9d3e93.PNG">
 
-
+<br />
 
 ## Future Works
 
