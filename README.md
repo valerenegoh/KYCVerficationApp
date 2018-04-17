@@ -2,8 +2,8 @@
 ![logoo2](https://user-images.githubusercontent.com/23626462/38903065-c2f91cc0-42d5-11e8-8012-dd33eba8baa2.png)
 Current Know-Your-Customer (KYC) processes typically require a Face-to-Face (F2F) verification whereby a human needs to verify the identity of a person (e.g. passport and NRIC) against their physical identity.
 The objective of this project is to:
-(i) design an application/software that allows a company to verify the identification of a person with confidence by leveraging on multiple cross verification factors to ensure that the identity document provided by the user does in fact belong to the user; and
-(ii) ensure a convenient, fast and secure verification process for the user
+*(i) design an application/software that allows a company to verify the identification of a person with confidence by leveraging on multiple cross verification factors to ensure that the identity document provided by the user does in fact belong to the user; and
+*(ii) ensure a convenient, fast and secure verification process for the user
 
 ## Contributors
 - Tan Li Yang:          Database, Registration, Email/PW Verification, Cryptographic Verfication, SMS OTP Verification, Unit Testing
@@ -55,7 +55,7 @@ ___
 
 <img width="429" alt="twelve" src="https://user-images.githubusercontent.com/23626462/38903072-c8b3d7d6-42d5-11e8-9b98-6cdc6305237f.PNG">
 
-<img width="436" alt="thirteen" src="https://user-images.githubusercontent.com/23626462/38903073-c9942d0e-42d5-11e8-92ae-17798b9d3e93.PNG">
+<img width="436" alt="thirteen" src="https://user-images.githubusercontent.com/23626462/38903544-f3451076-42d7-11e8-8454-8b241a25c953.PNG">
 
 ## Future Works
 
