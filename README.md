@@ -15,7 +15,7 @@ Video link:
 - **Chua Xiao Wei:**  Video
 
 ## Features Implemented
-Based on the companies' needs, we provide a range of verification solutions for user identification. The variety of verification/authenticaion methods for the first and second steps are versatile and can be implemented flexibly based on the requirements of the company.
+Based on the companies' needs, we provide a range of verification solutions for user identification. The variety of verification/authentication methods for the first and second steps are versatile and can be implemented flexibly based on the requirements of the company.
 
 For example, Company A may want to collect fewer data from the its employees while maintaining a safe and fast login process. So Company A may choose barcode verification of its employees' pass/card (1st step) followed by fingerprint verification. 
 
