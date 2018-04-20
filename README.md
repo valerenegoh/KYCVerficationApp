@@ -9,7 +9,7 @@ Video link:
 
 
 ## Contributors
-- **Tan Li Yang**:    Database, Registration, Email/PW Verification, Cryptographic Verfication, SMS OTP Verification, Unit Testing
+- **Tan Li Yang**:    Database, Registration, Email/PW Verification, Cryptographic Verification, SMS OTP Verification, Unit Testing
 - **Tracy Yee:**      NRIC Barcode Verification, System & Robustness Testing
 - **Valerene Goh:**   UI/UX & Integration, Facial Recognition Verification, Fingerprint Verification, Unit Testing
 - **Chua Xiao Wei:**  Video
