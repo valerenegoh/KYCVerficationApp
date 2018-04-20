@@ -29,7 +29,7 @@ Another example, Company B may want foolproof authentication that its employees 
 - Security Verification (Using Elliptic-Curve Cryptography)   - can bypass second step
 - Password Reset (Email OTP Verification)
 
-2nd step
+2nd step:
 - OTP Verification
 - Fingerprint Verification
 - Facial Recognition
