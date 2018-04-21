@@ -5,7 +5,7 @@ The objectives of this project are to:
 - Design an application/software that allows a company to verify the identification of a person with confidence by leveraging on multiple cross verification factors to ensure that the identity document provided by the user does in fact belong to the user; and
 - Ensure a convenient, fast and secure verification process for the user
 
-Video link:
+Video link: https://youtu.be/1gXIlqfUVkc 
 
 
 ## Contributors
