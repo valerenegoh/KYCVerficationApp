@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1063665227467:android:0c50439eb3cdffaf",
         "android_client_info": {
-          "package_name": "com.example.liyang.remotekyc"
+          "package_name": "com.example.asus.remotekyc"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "1063665227467-ks9434cbn4mlf8qpg0grptrrn4j9jhc7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.liyang.remotekyc",
+            "package_name": "com.example.asus.remotekyc",
             "certificate_hash": "164637db9ec54ca91cb60a4eabc205c41d3bb057"
           }
         },
@@ -26,7 +26,7 @@
           "client_id": "1063665227467-pkhuqpguis08t5ku5rushmkltbasvd6b.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.liyang.remotekyc",
+            "package_name": "com.example.asus.remotekyc",
             "certificate_hash": "f5d6e5a815698d7f174fc080d9ef3722e68f2ae8"
           }
         },
@@ -34,7 +34,7 @@
           "client_id": "1063665227467-u70sf430khqvf1ogoba2it4b6ke7u0sc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.liyang.remotekyc",
+            "package_name": "com.example.asus.remotekyc",
             "certificate_hash": "3ff13460ec24d14b9031b3b6320dab2436ece376"
           }
         },

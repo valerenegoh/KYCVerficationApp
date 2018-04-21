@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     tools:context=".FacialRecognition.NameActivity">
 
-    <com.example.liyang.remotekyc.FacialRecognition.Tutorial3View
+    <com.example.asus.remotekyc.FacialRecognition.Tutorial3View
         android:id="@+id/tutorial3_activity_java_surface_view"
         android:layout_width="325dp"
         android:layout_height="250dp"
