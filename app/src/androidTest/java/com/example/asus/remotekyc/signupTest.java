@@ -22,10 +22,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
-
-/**
- * Created by Li Yang on 13/3/2018.
- */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class signupTest {

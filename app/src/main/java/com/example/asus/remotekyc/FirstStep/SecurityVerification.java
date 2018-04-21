@@ -35,12 +35,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 
-
-
-/**
- * Created by Li Yang on 5/4/2018.
- */
-
 public class SecurityVerification extends AppCompatActivity {
 
     private Button authenticate;

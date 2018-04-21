@@ -26,12 +26,6 @@ import java.security.SecureRandom;
 import java.security.Security;
 import java.security.spec.ECGenParameterSpec;
 
-
-
-/**
- * Created by Li Yang on 4/4/2018.
- */
-
 public class securityinfo extends AppCompatActivity {
     private TextView publickey,privatekey,addresstext;
     private Query addData;

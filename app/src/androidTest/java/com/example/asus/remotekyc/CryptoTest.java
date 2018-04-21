@@ -1,6 +1,5 @@
 package com.example.asus.remotekyc;
 
-
 import android.os.SystemClock;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
@@ -27,13 +26,9 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
 
-/**
- * Created by Li Yang on 10/4/2018.
- */
-
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class CyptoTest {
+public class CryptoTest {
     /*
     For this test, if a "Verified" Toast appears, verification is a success
     Success Case => Pass
@@ -127,5 +122,4 @@ class RandomString
             buf[idx] = symbols.charAt(random.nextInt(symbols.length()));
         return new String(buf);
     }
-
 }

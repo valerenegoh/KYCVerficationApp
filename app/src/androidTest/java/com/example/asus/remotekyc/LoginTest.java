@@ -23,9 +23,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
 
-/**
- * Created by Li Yang on 2/4/2018.
- */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class LoginTest {

@@ -38,6 +38,7 @@ dependencies {
     compile('org.bitcoinj:bitcoinj-core:0.14.7') {
         exclude module: 'scrypt'
     }
+    compile 'io.appium:java-client:3.3.0'
     compile 'com.github.ctodobom:OpenCV-3.1.0-Android:-SNAPSHOT'
     compile files('libs/javacpp.jar')
     compile files('libs/javacv.jar')
